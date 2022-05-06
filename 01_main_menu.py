@@ -21,17 +21,17 @@ class Main:
         # Te Reo Māori Quiz Heading (row 0)
         self.main_heading = Label(self.main_frame, text="Te Reo Māori Quiz",
                                   font="Helvetica 16 bold",
-                                  bg=background_colour, padx=10, pady=10)
+                                  bg=background_colour)
         self.main_heading.grid(row=0)
 
-        # Introduction (row 1)
-        self.main_intro_label = Label(self.main_frame, text="",
-                                      font="Helvetica 10",
+        # Introduction (row 1) - filler text for now
+        self.main_intro_label = Label(self.main_frame, text="(introduction)",
+                                      font="Helvetica 10", pady=5,
                                       bg=background_colour)
         self.main_intro_label.grid(row=1)
 
         # Quiz select button frame (row 2)
-        self.quiz_select_buttons_frame = Frame(self.main_frame,
+        self.quiz_select_buttons_frame = Frame(self.main_frame, pady=10,
                                                bg=background_colour)
         self.quiz_select_buttons_frame.grid(row=2)
 
@@ -45,14 +45,14 @@ class Main:
         # Numbers quiz button (row 2, column 1)
         self.numbers_button = Button(self.quiz_select_buttons_frame,
                                      text="Numbers 1-10", font="Helvetica 14",
-                                     bg="#F5F5F5",  # light grey
+                                     bg="#F5F5F5",  # off white
                                      command=print("numbers"))
         self.numbers_button.grid(row=0, column=1)
 
         # Days of the Week quiz button (row 2, column 2)
         self.days_button = Button(self.quiz_select_buttons_frame,
                                   text="Days of the Week", font="Helvetica 14",
-                                  bg="#BAC8D3",  # grey
+                                  bg="#BAC8D3",  # light grey
                                   command=print("days"))
         self.days_button.grid(row=0, column=2)
 
