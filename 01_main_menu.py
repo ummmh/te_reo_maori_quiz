@@ -20,35 +20,39 @@ class Main:
         self.main_frame.grid()
 
         # Te Reo Māori Quiz Heading (row 0)
-        self.temp_converter_label = Label(self.main_frame,
+        self.main_heading = Label(self.main_frame,
                                           text="Te Reo Māori Quiz",
                                           font="Helvetica 16 bold",
                                           bg=background_colour,
                                           padx=10, pady=10)
-        self.temp_converter_label.grid(row=0)
+        self.main_heading.grid(row=0)
 
         # Introduction (row 1)
         self.main_intro_label = Label(self.main_frame, text="",
                                       font="Helvetica 10",
                                       bg=background_colour)
+        self.main_intro_label.grid(row=1)
 
         # Colours quiz button (row 2, column 0)
         self.colours_button = Button(self.main_frame, text="Colours",
-                                     font="Helvetica 14", bg="#DAE8FC",
-                                     padx=5, pady=1, command=print("colours"))
-        self.colours_button.grid(row=1)
+                                     font="Helvetica 14",
+                                     bg="#F8CECC",  # light red
+                                     command=print("colours"))
+        self.colours_button.grid(row=2, column=0)
 
         # Numbers quiz button (row 2, column 1)
         self.numbers_button = Button(self.main_frame, text="Numbers 1-10",
-                                     font="Helvetica 14", bg="#DAE8FC",
-                                     padx=5, pady=1, command=print("numbers"))
-        self.numbers_button.grid(row=1)
+                                     font="Helvetica 14",
+                                     bg="#F5F5F5",  # light grey
+                                     command=print("numbers"))
+        self.numbers_button.grid(row=2, column=1)
 
         # Days of the Week quiz button (row 2, column 2)
         self.days_button = Button(self.main_frame, text="Days of the Week",
-                                  font="Helvetica 14", bg="#DAE8FC",
-                                  padx=5, pady=1, command=print("days"))
-        self.days_button.grid(row=1)
+                                  font="Helvetica 14",
+                                  bg="#BAC8D3",  # grey
+                                  command=print("days"))
+        self.days_button.grid(row=2, column=2)
 
 
 # MAIN ROUTINE
