@@ -6,7 +6,7 @@ Created by Janna Lei Eugenio
 """
 
 from tkinter import *
-import random
+from functools import partial  # to prevent unwanted windows
 
 
 # Main menu
@@ -59,8 +59,13 @@ class Main:
 
 
 class Colours:
-    def __init__(self):
+    def __init__(self, partner):
         background = "#F8CECC"  # light red
+
+        # disables all quiz select buttons
+        partner.colours_button.config(state=DISABLED)
+        partner.numbers_button.config(state=DISABLED)
+        partner.days_button.config(state=DISABLED)
 
         # Sets up child window
         self.colours_box = Toplevel()
@@ -77,8 +82,13 @@ class Colours:
 
 
 class Numbers:
-    def __init__(self):
+    def __init__(self, partner):
         background = "#F5F5F5"  # off white
+
+        # disables all quiz select buttons
+        partner.colours_button.config(state=DISABLED)
+        partner.numbers_button.config(state=DISABLED)
+        partner.days_button.config(state=DISABLED)
 
         # Sets up child window
         self.numbers_box = Toplevel()
@@ -96,8 +106,13 @@ class Numbers:
 
 
 class Days:
-    def __init__(self):
+    def __init__(self, partner):
         background = "#BAC8D3"  # light grey
+
+        # disables all quiz select buttons
+        partner.colours_button.config(state=DISABLED)
+        partner.numbers_button.config(state=DISABLED)
+        partner.days_button.config(state=DISABLED)
 
         # Sets up child window
         self.days_box = Toplevel()
