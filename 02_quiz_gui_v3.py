@@ -79,6 +79,10 @@ class Colours:
         # Sets up child window
         self.colours_box = Toplevel()
 
+        # if users press cross at top, closes help and 'releases' colours button
+        self.colours_box.protocol('WM_DELETE_WINDOW', partial(
+            self.close_colours, partner))
+
         # Sets up GUI frame
         self.colours_frame = Frame(self.colours_box, bg=background, padx=10,
                                    pady=10)
@@ -88,6 +92,13 @@ class Colours:
         self.colours_heading = Label(self.colours_frame, bg=background,
                                      text="Colours", font="Helvetica 16 bold")
         self.colours_heading.grid()
+
+    def close_colours(self, partner):
+        partner.colours_button.config(state=NORMAL)
+        partner.numbers_button.config(state=NORMAL)
+        partner.days_button.config(state=NORMAL)
+        self.colours_box.destroy()
+
 
 
 class Numbers:
