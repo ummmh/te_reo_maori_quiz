@@ -79,7 +79,7 @@ class Colours:
         # Sets up child window
         self.colours_box = Toplevel()
 
-        # if users press cross at top, closes help and 'releases' colours button
+        # when user dismisses
         self.colours_box.protocol('WM_DELETE_WINDOW', partial(
             self.close_colours, partner))
 
