@@ -79,7 +79,7 @@ class Colours:
         # Sets up child window
         self.colours_box = Toplevel()
 
-        # when user dismisses
+        # when user dismisses quiz window - reactivates all buttons
         self.colours_box.protocol('WM_DELETE_WINDOW', partial(
             self.close_colours, partner))
 
@@ -93,12 +93,12 @@ class Colours:
                                      text="Colours", font="Helvetica 16 bold")
         self.colours_heading.grid()
 
+    # function to enable buttons on main menu
     def close_colours(self, partner):
         partner.colours_button.config(state=NORMAL)
         partner.numbers_button.config(state=NORMAL)
         partner.days_button.config(state=NORMAL)
         self.colours_box.destroy()
-
 
 
 class Numbers:
@@ -113,6 +113,10 @@ class Numbers:
         # Sets up child window
         self.numbers_box = Toplevel()
 
+        # when user dismisses quiz window - reactivates all buttons
+        self.numbers_box.protocol('WM_DELETE_WINDOW', partial(
+            self.close_numbers, partner))
+
         # Sets up GUI frame
         self.numbers_frame = Frame(self.numbers_box, bg=background, padx=10,
                                    pady=10)
@@ -123,6 +127,13 @@ class Numbers:
                                      text="Numbers 1-10",
                                      font="Helvetica 16 bold")
         self.numbers_heading.grid()
+
+    # function to enable buttons on main menu
+    def close_numbers(self, partner):
+        partner.colours_button.config(state=NORMAL)
+        partner.numbers_button.config(state=NORMAL)
+        partner.days_button.config(state=NORMAL)
+        self.numbers_box.destroy()
 
 
 class Days:
@@ -137,6 +148,10 @@ class Days:
         # Sets up child window
         self.days_box = Toplevel()
 
+        # when user dismisses quiz window - reactivates all buttons
+        self.days_box.protocol('WM_DELETE_WINDOW', partial(
+            self.close_days, partner))
+
         # Sets up GUI frame
         self.days_frame = Frame(self.days_box, bg=background, padx=10,
                                    pady=10)
@@ -147,6 +162,13 @@ class Days:
                                      text="Numbers 1-10",
                                      font="Helvetica 16 bold")
         self.days_heading.grid()
+
+    # function to enable buttons on main menu
+    def close_days(self, partner):
+        partner.colours_button.config(state=NORMAL)
+        partner.numbers_button.config(state=NORMAL)
+        partner.days_button.config(state=NORMAL)
+        self.days_box.destroy()
 
 
 # MAIN ROUTINE
