@@ -76,6 +76,7 @@ class Main:
         open_quiz.quiz_heading.configure(bg="#BAC8D3", text="Days of the Week")
 
 
+# Quiz GUI
 class Quiz:
     def __init__(self, partner):
         # Disables all quiz select buttons
