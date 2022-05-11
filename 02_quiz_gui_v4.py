@@ -1,5 +1,5 @@
 """Component 2 of Te Reo Māori Quiz
-Version 3 of the Quiz GUI - development so that theres one class to display the
+Version 4 of the Quiz GUI - development so that theres one class to display the
 the quiz window
 Created by Janna Lei Eugenio
 10/05/2022
