@@ -5,6 +5,7 @@ Created by Janna Lei Eugenio
 11/05/2022
 """
 
+import tkinter as tk
 from tkinter import *
 from functools import partial  # to prevent unwanted windows
 
@@ -109,4 +110,3 @@ if __name__ == "__main__":
     root.title("Te Reo Māori Quiz")
     something = Main(root)
     root.mainloop()
-
