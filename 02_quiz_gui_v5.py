@@ -5,14 +5,38 @@ Created by Janna Lei Eugenio
 11/05/2022
 """
 
-import tkinter as tk
 from tkinter import *
+import tkinter as ttk
 from functools import partial  # to prevent unwanted windows
 
 
+class Window(Tk):
+    def __init__(self):
+        Tk.__init__(self)
+        container = Frame(self)
+        container.grid()
+
+        self.pages = {}
+
+        for F in (Main, Quiz):
+            page = F(container, self)
+            self.pages[F] = page
+            page.grid()
+        self.show_page(Main)
+
+    def show_page(self, cont):
+        page = self.pages[cont]
+        page.tkraise()
+
+
 # Main menu
-class Main:
-    def __init__(self, parent):
+class Main(ttk.Frame):
+    def __init__(self, parent, controller):
+        self.controller = controller
+        ttk.Frame.__init__(self, parent)
+        self.main_menu()
+
+    def main_menu(self):
         # Formatting variables
         background_colour = "white"
 
@@ -78,8 +102,9 @@ class Main:
 
 
 # Quiz GUI
-class Quiz:
+class Quiz(Frame):
     def __init__(self, partner):
+        self.controller
         # Disables all quiz select buttons
         partner.colours_button.config(state=DISABLED)
         partner.numbers_button.config(state=DISABLED)
