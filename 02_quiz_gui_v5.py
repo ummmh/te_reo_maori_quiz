@@ -83,19 +83,19 @@ class Main(ttk.Frame):
         self.days_button.grid(row=0, column=2)
 
     def select_colours(self):
-        open_quiz = Quiz(self)
+        open_quiz = self.controller.show_page(Quiz)
         # Changes heading and background to match button
         open_quiz.quiz_box.configure(bg="#F8CECC")  # background = light red
         open_quiz.quiz_heading.configure(bg="#F8CECC", text="Colours")
 
     def select_numbers(self):
-        open_quiz = Quiz(self)
+        open_quiz = self.controller.show_page(Quiz)
         # Changes heading and background to match button
         open_quiz.quiz_box.configure(bg="#F5F5F5")  # background = off white
         open_quiz.quiz_heading.configure(bg="#F5F5F5", text="Numbers 1-10")
 
     def select_days(self):
-        open_quiz = Quiz(self)
+        open_quiz = self.controller.show_page(Quiz)
         # Changes heading and background to match button
         open_quiz.quiz_box.configure(bg="#BAC8D3")  # background = light grey
         open_quiz.quiz_heading.configure(bg="#BAC8D3", text="Days of the Week")
@@ -103,35 +103,22 @@ class Main(ttk.Frame):
 
 # Quiz GUI
 class Quiz(Frame):
-    def __init__(self, partner):
-        self.controller
-        # Disables all quiz select buttons
-        partner.colours_button.config(state=DISABLED)
-        partner.numbers_button.config(state=DISABLED)
-        partner.days_button.config(state=DISABLED)
+    def __init__(self, parent, controller):
+        self.controller = controller
+        ttk.Frame.__init__(self, parent)
+        self.quiz()
 
+    def quiz(self):
         # Sets up child window
         self.quiz_box = Toplevel(width=500, height=500)
-
-        # When user dismisses quiz window - reactivates all buttons
-        self.quiz_box.protocol('WM_DELETE_WINDOW', partial(
-            self.close_quiz, partner))
 
         # Quiz heading (row 0)
         self.quiz_heading = Label(self.quiz_box, font="Helvetica 16 bold")
         self.quiz_heading.grid(row=0)
-
-    # Function to enable buttons on main menu
-    def close_quiz(self, partner):
-        partner.colours_button.config(state=NORMAL)
-        partner.numbers_button.config(state=NORMAL)
-        partner.days_button.config(state=NORMAL)
-        self.quiz_box.destroy()
 
 
 # MAIN ROUTINE
 if __name__ == "__main__":
     root = Tk()
     root.title("Te Reo Māori Quiz")
-    something = Main(root)
     root.mainloop()
