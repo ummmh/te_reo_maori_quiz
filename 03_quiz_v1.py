@@ -4,7 +4,7 @@ Created by Janna Lei Eugenio
 13/05/2022
 """
 
-import random  # to select a random colour from the list
+import random  # to select a random word from the list
 
 # list containing the questions and answers
 COLOURS = [["Mā", "white"], ["Whero", "red"], ["Kākāriki", "green"],
