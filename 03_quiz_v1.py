@@ -13,8 +13,12 @@ COLOURS = [["Mā", "white"], ["Whero", "red"], ["Kākāriki", "green"],
            ["Waiporoporo", "purple"], ["Kiwikiwi", "grey"]]
 total = len(COLOURS)  # total number of questions
 
+for i in COLOURS:  # for testing
+    print(i)
+print()
+
 # count up the amount of correct answers
-correct = 0
+correct_answers = 0
 
 # main routine
 while COLOURS:
@@ -27,10 +31,11 @@ while COLOURS:
     answer = input().lower()
     if answer == question[1]:
         print("correct\n")
-        correct += 1
+        correct_answers += 1
+        print(correct_answers)  # for testing
     else:
         print("incorrect")
         print(f"the correct number was {question[1]}\n")
 
 # Score output
-print(f"\nScore: {correct}/{total}")
+print(f"\nScore: {correct_answers}/{total}")
