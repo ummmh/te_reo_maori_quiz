@@ -65,7 +65,7 @@ def quiz(selection):
             #print(f"correct answers = {correct_answers}")  # for testing
 
     # Score output
-    print(f"\nScore: {correct_answers}/{total}")
+    print(f"Score: {correct_answers}/{total}")
 
 
 # main
