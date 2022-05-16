@@ -39,9 +39,9 @@ def quiz(selection):
     # total number of questions
     total = len(questions)
 
-    #for item in questions:  # for testing
-    #    print(item)
-    #print()
+    for item in questions:  # for testing
+        print(item)
+    print()
 
     # count up the amount of correct answers
     correct_answers = 0
