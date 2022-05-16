@@ -13,8 +13,8 @@ COLOURS = [["Mā", "white"], ["Whero", "red"], ["Kākāriki", "green"],
            ["Waiporoporo", "purple"], ["Kiwikiwi", "grey"]]
 total = len(COLOURS)  # total number of questions
 
-for i in COLOURS:  # for testing
-    print(i)
+for colour in COLOURS:  # for testing
+    print(colour)
 print()
 
 # count up the amount of correct answers
