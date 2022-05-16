@@ -10,19 +10,19 @@ import random  # to select a random word from the list
 # quiz function
 def quiz(selection):
     # separate lists relating to quiz selection
-    COLOURS = [["Mā", "white"], ["Whero", "red"], ["Kākāriki", "green"],
+    colours = [["Mā", "white"], ["Whero", "red"], ["Kākāriki", "green"],
                ["Mangu", "black"], ["Pango", "black"], ["Kōwhai", "yellow"],
                ["Parauri", "brown"], ["Kikorangi", "blue"],
                ["Karaka", "orange"], ["Waiporoporo", "purple"],
                ["Kiwikiwi", "grey"]]
 
-    NUMBERS = [["Tahi", "one", "1"], ["Rua", "two", "2"],
+    numbers = [["Tahi", "one", "1"], ["Rua", "two", "2"],
                ["Toru", "three", "3"], ["Whā", "four", "4"],
                ["Rima", "five", "5"], ["Ono", "six", "6"],
                ["Whitu", "seven", "7"], ["Waru", "eight", "8"],
                ["Iwa", "nine", "9"], ["Tekau", "ten", "10"]]
 
-    DAYS = [["Rāhina", "monday"], ["Rātū", "Tuesday"], ["Rāapa", "wednesday"],
+    days = [["Rāhina", "monday"], ["Rātū", "Tuesday"], ["Rāapa", "wednesday"],
             ["Rāpare", "thursday"], ["Rāmere", "friday"],
             ["Rāhoroi", "saturday"], ["Rātapu", "sunday"]]
 
@@ -30,11 +30,11 @@ def quiz(selection):
     questions = []
 
     if selection == "C":
-        questions = COLOURS
+        questions = colours
     elif selection == "N":
-        questions = NUMBERS
+        questions = numbers
     elif selection == "D":
-        questions = DAYS
+        questions = days
 
     # total number of questions
     total = len(questions)
@@ -69,5 +69,6 @@ def quiz(selection):
 
 
 # main
-quiz_selection = input("enter input").upper()
+# quiz input for testing - later will be based on the button on main GUI
+quiz_selection = input("enter quiz selection: ").upper()
 quiz(quiz_selection)
