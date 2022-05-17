@@ -44,7 +44,8 @@ class MainMenu(tk.Frame):
         background_colour = "white"
 
         # Main menu Screen GUI
-        self.main_frame = tk.Frame(self, bg=background_colour, padx=10, pady=10)
+        self.main_frame = tk.Frame(self, bg=background_colour,
+                                   padx=10, pady=10)
         self.main_frame.grid()
 
         # Te Reo Māori Quiz Heading (row 0)
@@ -54,9 +55,10 @@ class MainMenu(tk.Frame):
         self.main_heading.grid(row=0)
 
         # Introduction (row 1) - filler text for now
-        self.main_intro_label = tk.Label(self.main_frame, text="(introduction)",
-                                      font="Helvetica 10", pady=5,
-                                      bg=background_colour)
+        self.main_intro_label = tk.Label(self.main_frame,
+                                         text="(introduction)",
+                                         font="Helvetica 10", pady=5,
+                                         bg=background_colour)
         self.main_intro_label.grid(row=1)
 
         # Quiz select button frame (row 2)
@@ -66,23 +68,23 @@ class MainMenu(tk.Frame):
 
         # Colours quiz button (row 2, column 0)
         self.colours_button = tk.Button(self.quiz_select_buttons_frame,
-                                     text="Colours", font="Helvetica 14",
-                                     bg="#F8CECC",  # light red
-                                     command=self.select_colours)
+                                        text="Colours", font="Helvetica 14",
+                                        bg="#F8CECC",  # light red
+                                        command=self.select_colours)
         self.colours_button.grid(row=0, column=0)
 
         # Numbers quiz button (row 2, column 1)
         self.numbers_button = tk.Button(self.quiz_select_buttons_frame,
-                                     text="Numbers 1-10", font="Helvetica 14",
-                                     bg="#F5F5F5",  # off white
-                                     command=self.select_numbers)
+                                        text="Numbers 1-10",  # off white
+                                        font="Helvetica 14", bg="#F5F5F5",
+                                        command=self.select_numbers)
         self.numbers_button.grid(row=0, column=1)
 
         # Days of the Week quiz button (row 2, column 2)
         self.days_button = tk.Button(self.quiz_select_buttons_frame,
-                                  text="Days of the Week", font="Helvetica 14",
-                                  bg="#BAC8D3",  # light grey
-                                  command=self.select_days)
+                                     text="Days of the Week",  # light grey
+                                     font="Helvetica 14", bg="#BAC8D3",
+                                     command=self.select_days)
         self.days_button.grid(row=0, column=2)
 
     def select_colours(self):
