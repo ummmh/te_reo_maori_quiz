@@ -5,78 +5,82 @@ Created by Janna Lei Eugenio
 11/05/2022
 """
 
+import tkinter as tk
 from tkinter import *
-import tkinter as ttk
 from functools import partial  # to prevent unwanted windows
 
 
-class Window(Tk):
-    def __init__(self):
-        Tk.__init__(self)
+# Main window
+class MainWindow(tk.Tk):
+    def __init__(self, *args, **kwargs):
+        Tk.__init__(self, *args, **kwargs)
+
+        # main frame where all the pages are stored
         container = Frame(self)
-        container.grid()
+        container.grid(row=0, column=0)
 
         self.pages = {}
 
-        for F in (Main, Quiz):
-            page = F(container, self)
-            self.pages[F] = page
-            page.grid()
-        self.show_page(Main)
+        for p in (MainMenu, Quiz):
+            page_name = p.__name__
+            frame = p(parent=container, controller=self)
+            frame.grid()
+        self.show_page(MainMenu)
+        self.pages[page_name] = frame
 
-    def show_page(self, cont):
-        page = self.pages[cont]
+        self.show_page(MainMenu)
+
+    def show_page(self, page_name):
+        page = self.pages[page_name]
         page.tkraise()
 
 
 # Main menu
-class Main(ttk.Frame):
+class MainMenu(tk.Frame):
     def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
         self.controller = controller
-        ttk.Frame.__init__(self, parent)
-        self.main_menu()
 
-    def main_menu(self):
         # Formatting variables
         background_colour = "white"
 
         # Main menu Screen GUI
-        self.main_frame = Frame(bg=background_colour, padx=10, pady=10)
+        self.main_frame = tk.Frame(MainMenu, bg=background_colour, padx=10, pady=10)
         self.main_frame.grid()
 
         # Te Reo Māori Quiz Heading (row 0)
-        self.main_heading = Label(self.main_frame, text="Te Reo Māori Quiz",
+        self.main_heading = tk.Label(self.main_frame, text="Te Reo Māori Quiz",
                                   font="Helvetica 16 bold",
                                   bg=background_colour)
         self.main_heading.grid(row=0)
 
         # Introduction (row 1) - filler text for now
-        self.main_intro_label = Label(self.main_frame, text="(introduction)",
+        self.main_intro_label = tk.Label(self.main_frame, text="(introduction)",
                                       font="Helvetica 10", pady=5,
                                       bg=background_colour)
         self.main_intro_label.grid(row=1)
 
         # Quiz select button frame (row 2)
-        self.quiz_select_buttons_frame = Frame(self.main_frame, pady=10,
+        self.quiz_select_buttons_frame = tk.Frame(self.main_frame, pady=10,
                                                bg=background_colour)
         self.quiz_select_buttons_frame.grid(row=2)
 
         # Colours quiz button (row 2, column 0)
-        self.colours_button = Button(self.quiz_select_buttons_frame,
+        self.colours_button = tk.Button(self.quiz_select_buttons_frame,
                                      text="Colours", font="Helvetica 14",
                                      bg="#F8CECC",  # light red
                                      command=self.select_colours)
         self.colours_button.grid(row=0, column=0)
 
         # Numbers quiz button (row 2, column 1)
-        self.numbers_button = Button(self.quiz_select_buttons_frame,
+        self.numbers_button = tk.Button(self.quiz_select_buttons_frame,
                                      text="Numbers 1-10", font="Helvetica 14",
                                      bg="#F5F5F5",  # off white
                                      command=self.select_numbers)
         self.numbers_button.grid(row=0, column=1)
 
         # Days of the Week quiz button (row 2, column 2)
-        self.days_button = Button(self.quiz_select_buttons_frame,
+        self.days_button = tk.Button(self.quiz_select_buttons_frame,
                                   text="Days of the Week", font="Helvetica 14",
                                   bg="#BAC8D3",  # light grey
                                   command=self.select_days)
@@ -97,23 +101,21 @@ class Main(ttk.Frame):
     def select_days(self):
         open_quiz = self.controller.show_page(Quiz)
         # Changes heading and background to match button
-        open_quiz.quiz_box.configure(bg="#BAC8D3")  # background = light grey
+        open_quiz.quiz_frame.configure(bg="#BAC8D3")  # background = light grey
         open_quiz.quiz_heading.configure(bg="#BAC8D3", text="Days of the Week")
 
 
 # Quiz GUI
-class Quiz(Frame):
+class Quiz(tk.Frame):
     def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
         self.controller = controller
-        ttk.Frame.__init__(self, parent)
-        self.quiz()
 
-    def quiz(self):
-        # Sets up child window
-        self.quiz_box = Toplevel(width=500, height=500)
+        # Quiz frame
+        self.quiz_frame = tk.Frame(width=500, height=500)
 
         # Quiz heading (row 0)
-        self.quiz_heading = Label(self.quiz_box, font="Helvetica 16 bold")
+        self.quiz_heading = tk.Label(self, font="Helvetica 16 bold")
         self.quiz_heading.grid(row=0)
 
 
