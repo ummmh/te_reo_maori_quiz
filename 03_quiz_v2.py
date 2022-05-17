@@ -22,7 +22,7 @@ def quiz(selection):
                ["Whitu", "seven", "7"], ["Waru", "eight", "8"],
                ["Iwa", "nine", "9"], ["Tekau", "ten", "10"]]
 
-    days = [["Rāhina", "monday"], ["Rātū", "Tuesday"], ["Rāapa", "wednesday"],
+    days = [["Rāhina", "monday"], ["Rātū", "tuesday"], ["Rāapa", "wednesday"],
             ["Rāpare", "thursday"], ["Rāmere", "friday"],
             ["Rāhoroi", "saturday"], ["Rātapu", "sunday"]]
 
