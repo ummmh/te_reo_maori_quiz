@@ -55,14 +55,18 @@ def quiz(selection):
 
         # User inputs an answer
         answer = input().lower()
-        if answer == question[1] or answer == question[2]:
-            print("correct\n")
-            correct_answers += 1
-            #print(f"correct answers = {correct_answers}")  # for testing
-        else:
+        try:
+            if answer == question[1] or answer == question[2]:
+                print("correct\n")
+                correct_answers += 1
+                #print(f"correct answers = {correct_answers}")  # for testing
+            else:
+                print("incorrect")
+                print(f"the correct number was {question[1]}\n")
+                #print(f"correct answers = {correct_answers}")  # for testing
+        except IndexError:
             print("incorrect")
             print(f"the correct number was {question[1]}\n")
-            #print(f"correct answers = {correct_answers}")  # for testing
 
     # Score output
     print(f"Score: {correct_answers}/{total}")
