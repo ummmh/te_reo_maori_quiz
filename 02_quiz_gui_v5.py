@@ -7,7 +7,6 @@ Created by Janna Lei Eugenio
 
 import tkinter as tk
 from tkinter import *
-from functools import partial  # to prevent unwanted windows
 
 
 # Main window
@@ -19,16 +18,16 @@ class MainWindow(tk.Tk):
         container = Frame(self)
         container.grid(row=0, column=0)
 
+        # stores the pages
         self.pages = {}
 
         for p in (MainMenu, Quiz):
             page_name = p.__name__
             frame = p(parent=container, controller=self)
-            frame.grid()
-        self.show_page(MainMenu)
-        self.pages[page_name] = frame
+            frame.grid(row=0, column=0)
+            self.pages[page_name] = frame
 
-        self.show_page(MainMenu)
+        self.show_page('MainMenu')
 
     def show_page(self, page_name):
         page = self.pages[page_name]
@@ -45,7 +44,7 @@ class MainMenu(tk.Frame):
         background_colour = "white"
 
         # Main menu Screen GUI
-        self.main_frame = tk.Frame(MainMenu, bg=background_colour, padx=10, pady=10)
+        self.main_frame = tk.Frame(self, bg=background_colour, padx=10, pady=10)
         self.main_frame.grid()
 
         # Te Reo Māori Quiz Heading (row 0)
