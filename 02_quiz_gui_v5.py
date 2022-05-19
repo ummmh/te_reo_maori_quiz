@@ -16,7 +16,7 @@ class MainWindow(tk.Tk):
 
         # main frame where all the pages are stored
         container = Frame(self)
-        container.grid(row=0, column=0)
+        container.grid(row=0, column=0, sticky="nsew")
 
         # stores the pages
         self.pages = {}
