@@ -9,30 +9,33 @@ import random  # to select a random word from the list
 
 # quiz function
 def quiz(selection):
-
+    # separate dictionaries relating to quiz selection
     colours = {"Mā": "white", "Whero": "red", "Kākāriki": "green",
                "Mangu / Pango": "black", "Kōwhai": "yellow",
                "Parauri": "brown", "Kikorangi": "blue", "Karaka": "orange",
                "Waiporoporo": "purple", "Kiwikiwi": "grey"}
 
-    numbers = {'Tahi': "one" "1", 'Rua': "two" "2", 'Toru': "three" "3",
-               'Whā': "four" "4", 'Rima': "five" "5", 'Ono': "six" "6",
-               'Whitu': "seven" "7", 'Waru': "eight" "8", 'Iwa': "nine" "9",
-               'Tekau': "ten" "10"}
+    numbers = {'Tahi': ["one", "1"], 'Rua': ["two", "2"],
+               'Toru': ["three", "3"], 'Whā': ["four", "4"],
+               'Rima': ["five", "5"], 'Ono': ["six", "6"],
+               'Whitu': ["seven", "7"], 'Waru': ["eight", "8"],
+               'Iwa': ["nine", "9"], 'Tekau': ["ten", "10"]}
 
     days = {'Rāhina': "monday", 'Rātū': "tuesday", 'Rāapa': "wednesday",
             'Rāpare': "thursday", 'Rāmere': "friday", 'Rāhoroi': "saturday",
             'Rātapu': "sunday"}
 
-    # list containing the questions and answers
-    questions = {}
-
+    # which quiz user is playing
     if selection == "C":
-        questions = colours
+        selection = colours
     elif selection == "N":
-        questions = numbers
+        selection = numbers
     elif selection == "D":
-        questions = days
+        selection = days
+
+    # list containing the questions and answers
+    questions = list(selection.items())
+    random.shuffle(questions)
 
     # total number of questions
     total = len(questions)
@@ -41,14 +44,14 @@ def quiz(selection):
     correct_answers = 0
 
     # ask user questions
-    while questions:
+    for word in questions:
         # select a random word from dictionary
-        question = random.choice(list(questions))
-        print(question)
+        question = word
+        print(question[0])
 
         # User inputs an answer
-        answer = input().lower()
-        if answer in question:
+        guess = input().lower()
+        if guess in question[1]:
             print("correct\n")
             correct_answers += 1
         else:
