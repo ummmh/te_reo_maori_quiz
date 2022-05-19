@@ -42,18 +42,18 @@ def quiz(selection):
 
     # ask user questions
     while questions:
-        # Asks the question
-        question = random.choice(list(questions))  # select a random colour from list
+        # select a random word from dictionary
+        question = random.choice(list(questions))
         print(question)
 
         # User inputs an answer
         answer = input().lower()
-        if answer == question:
+        if answer in question:
             print("correct\n")
             correct_answers += 1
         else:
             print("incorrect")
-            print(f"the correct number was {question[1]}\n")
+            print(f"the correct answer was {question[1]}\n")
 
     # Score output
     print(f"Score: {correct_answers}/{total}")
