@@ -87,13 +87,13 @@ class MainMenu(tk.Frame):
         self.days_button.grid(row=0, column=2)
 
     def select_colours(self):
-        open_quiz = self.controller.show_page(Quiz)
+        open_quiz = lambda: self.controller.show_page(Quiz)
         # Changes heading and background to match button
-        open_quiz.quiz_box.configure(bg="#F8CECC")  # background = light red
+        open_quiz.quiz_frame.configure(bg="#F8CECC")  # background = light red
         open_quiz.quiz_heading.configure(bg="#F8CECC", text="Colours")
 
     def select_numbers(self):
-        open_quiz = self.controller.show_page(Quiz)
+        self.controller.show_page(Quiz)
         # Changes heading and background to match button
         open_quiz.quiz_box.configure(bg="#F5F5F5")  # background = off white
         open_quiz.quiz_heading.configure(bg="#F5F5F5", text="Numbers 1-10")
@@ -112,7 +112,8 @@ class Quiz(tk.Frame):
         self.controller = controller
 
         # Quiz frame
-        self.quiz_frame = tk.Frame(width=500, height=500)
+        self.quiz_frame = tk.Frame()
+        self.quiz_frame.grid()
 
         # Quiz heading (row 0)
         self.quiz_heading = tk.Label(self, font="Helvetica 16 bold")
