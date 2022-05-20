@@ -26,8 +26,7 @@ class MainWindow(tk.Tk):
             frame = p(parent=container, controller=self)
             frame.grid(row=0, column=0)
             self.pages[page_name] = frame
-
-        self.show_page('MainMenu')
+        self.show_page("MainMenu")
 
     def show_page(self, page_name):
         page = self.pages[page_name]
@@ -122,6 +121,6 @@ class Quiz(tk.Frame):
 
 # MAIN ROUTINE
 if __name__ == "__main__":
-    root = Tk()
+    root = MainWindow()
     root.title("Te Reo Māori Quiz")
     root.mainloop()
