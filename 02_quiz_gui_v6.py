@@ -117,8 +117,7 @@ class Colours(tk.Frame):
         # Back button (row 2)
         self.back_bttn = tk.Button(self.colours_frame, font="Helvetica 14",
                                    bg="white", text="Back to Main Menu",
-                                   command=lambda:
-                                   controller.show_page("MainMenu"))
+                                   command=controller.show_page("MainMenu"))
         self.back_bttn.grid(row=2)
 
 
@@ -127,14 +126,28 @@ class Numbers(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
 
+        background = "#F5F5F5"  # background = off white
+
         # Quiz frame
-        self.num_frame = tk.Frame(bg="#F5F5F5")  # background = off white
-        self.num_frame.grid()
+        self.numbers_frame = tk.Frame(bg=background)
+        self.numbers_frame.grid(row=0, column=0, sticky="nsew")
 
         # Quiz heading (row 0)
-        self.num_heading = tk.Label(self, font="Helvetica 16 bold",
-                                    bg="#F5F5F5", text="Numbers 1-10")
-        self.num_heading.grid(row=0)
+        self.numbers_heading = tk.Label(self.numbers_frame,
+                                        font="Helvetica 16 bold",
+                                        bg=background, text="Colours")
+        self.numbers_heading.grid(row=0)
+
+        # Quiz instructions (row 1)
+        self.numbers_text = tk.Label(self.numbers_frame, font="Helvetica 10",
+                                     bg=background, text="(intro)")
+        self.numbers_text.grid(row=1)
+
+        # Back button (row 2)
+        self.back_bttn = tk.Button(self.numbers_frame, font="Helvetica 14",
+                                   bg="white", text="Back to Main Menu",
+                                   command=controller.show_page("MainMenu"))
+        self.back_bttn.grid(row=2)
 
 
 class Days(tk.Frame):
@@ -142,14 +155,27 @@ class Days(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
 
+        background = "#BAC8D3"  # background = light grey
+
         # Quiz frame
-        self.days_frame = tk.Frame(bg="#BAC8D3")  # background = light grey
-        self.days_frame.grid()
+        self.days_frame = tk.Frame(bg=background)
+        self.days_frame.grid(row=0, column=0, sticky="nsew")
 
         # Quiz heading (row 0)
-        self.days_heading = tk.Label(self, font="Helvetica 16 bold",
-                                     bg="#BAC8D3", text="Days of the Week")
+        self.days_heading = tk.Label(self.days_frame, font="Helvetica 16 bold",
+                                     bg=background, text="Colours")
         self.days_heading.grid(row=0)
+
+        # Quiz instructions (row 1)
+        self.days_text = tk.Label(self.days_frame, font="Helvetica 10",
+                                  bg=background, text="(intro)")
+        self.days_text.grid(row=1)
+
+        # Back button (row 2)
+        self.back_bttn = tk.Button(self.days_frame, font="Helvetica 14",
+                                   bg="white", text="Back to Main Menu",
+                                   command=self.controller.show_page("MainMenu"))
+        self.back_bttn.grid(row=2)
 
 
 # MAIN ROUTINE
