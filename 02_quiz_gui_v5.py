@@ -21,7 +21,7 @@ class MainWindow(tk.Tk):
         # stores the pages
         self.pages = {}
 
-        for p in (MainMenu, Quiz):
+        for p in (MainMenu, Colours, Numbers, Days):
             page_name = p.__name__
             frame = p(parent=container, controller=self)
             frame.grid(row=0, column=0)
@@ -45,7 +45,7 @@ class MainMenu(tk.Frame):
         # Main menu Screen GUI
         self.main_frame = tk.Frame(self, bg=background_colour,
                                    padx=10, pady=10)
-        self.main_frame.grid()
+        self.main_frame.grid(row=0, column=0, sticky="nsew")
 
         # Te Reo Māori Quiz Heading (row 0)
         self.main_heading = tk.Label(self.main_frame, text="Te Reo Māori Quiz",
@@ -69,36 +69,29 @@ class MainMenu(tk.Frame):
         self.colours_button = tk.Button(self.quiz_select_buttons_frame,
                                         text="Colours", font="Helvetica 14",
                                         bg="#F8CECC",  # light red
-                                        command=self.select_colours)
+                                        command=lambda:
+                                        controller.show_page("Colours"))
         self.colours_button.grid(row=0, column=0)
 
         # Numbers quiz button (row 2, column 1)
         self.numbers_button = tk.Button(self.quiz_select_buttons_frame,
                                         text="Numbers 1-10",  # off white
                                         font="Helvetica 14", bg="#F5F5F5",
-                                        command=self.select_numbers)
+                                        command=lambda:
+                                        controller.show_page("Numbers"))
         self.numbers_button.grid(row=0, column=1)
 
         # Days of the Week quiz button (row 2, column 2)
         self.days_button = tk.Button(self.quiz_select_buttons_frame,
                                      text="Days of the Week",  # light grey
                                      font="Helvetica 14", bg="#BAC8D3",
-                                     command=self.select_days)
+                                     command=lambda:
+                                     controller.show_page("Days"))
         self.days_button.grid(row=0, column=2)
-
-    def select_colours(self):
-        self.controller.show_page("Quiz")
-        Quiz.configure_quiz(Quiz, "colours")
-
-    def select_numbers(self):
-        self.controller.show_page(Quiz)
-
-    def select_days(self):
-        self.controller.show_page(Quiz)
 
 
 # Quiz GUI
-class ColoursQuiz(tk.Frame):
+class Colours(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
@@ -113,7 +106,7 @@ class ColoursQuiz(tk.Frame):
         self.colours_heading.grid(row=0)
 
 
-class NumbersQuiz(tk.Frame):
+class Numbers(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
@@ -128,7 +121,7 @@ class NumbersQuiz(tk.Frame):
         self.num_heading.grid(row=0)
 
 
-class DaysQuiz(tk.Frame):
+class Days(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
