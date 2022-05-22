@@ -87,37 +87,60 @@ class MainMenu(tk.Frame):
         self.days_button.grid(row=0, column=2)
 
     def select_colours(self):
-        open_quiz = lambda: self.controller.show_page(Quiz)
-        # Changes heading and background to match button
-        open_quiz.quiz_frame.configure(bg="#F8CECC")  # background = light red
-        open_quiz.quiz_heading.configure(bg="#F8CECC", text="Colours")
+        self.controller.show_page("Quiz")
+        Quiz.configure_quiz(Quiz, "colours")
 
     def select_numbers(self):
         self.controller.show_page(Quiz)
-        # Changes heading and background to match button
-        open_quiz.quiz_box.configure(bg="#F5F5F5")  # background = off white
-        open_quiz.quiz_heading.configure(bg="#F5F5F5", text="Numbers 1-10")
 
     def select_days(self):
-        open_quiz = self.controller.show_page(Quiz)
-        # Changes heading and background to match button
-        open_quiz.quiz_frame.configure(bg="#BAC8D3")  # background = light grey
-        open_quiz.quiz_heading.configure(bg="#BAC8D3", text="Days of the Week")
+        self.controller.show_page(Quiz)
 
 
 # Quiz GUI
-class Quiz(tk.Frame):
+class ColoursQuiz(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
 
         # Quiz frame
-        self.quiz_frame = tk.Frame()
-        self.quiz_frame.grid()
+        self.colours_frame = tk.Frame(bg="#F8CECC")  # background = light red
+        self.colours_frame.grid()
 
         # Quiz heading (row 0)
-        self.quiz_heading = tk.Label(self, font="Helvetica 16 bold")
-        self.quiz_heading.grid(row=0)
+        self.colours_heading = tk.Label(self, font="Helvetica 16 bold",
+                                        bg="#F8CECC", text="Colours")
+        self.colours_heading.grid(row=0)
+
+
+class NumbersQuiz(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+
+        # Quiz frame
+        self.num_frame = tk.Frame(bg="#F5F5F5")  # background = off white
+        self.num_frame.grid()
+
+        # Quiz heading (row 0)
+        self.num_heading = tk.Label(self, font="Helvetica 16 bold",
+                                    bg="#F5F5F5", text="Numbers 1-10")
+        self.num_heading.grid(row=0)
+
+
+class DaysQuiz(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+
+        # Quiz frame
+        self.days_frame = tk.Frame(bg="#BAC8D3")  # background = light grey
+        self.days_frame.grid()
+
+        # Quiz heading (row 0)
+        self.days_heading = tk.Label(self, font="Helvetica 16 bold",
+                                     bg="#BAC8D3", text="Days of the Week")
+        self.days_heading.grid(row=0)
 
 
 # MAIN ROUTINE
