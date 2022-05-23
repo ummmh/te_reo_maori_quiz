@@ -9,8 +9,15 @@ import random  # to select a random word from the list
 
 # function to check the answer
 def check_answer(dictionary, word, answer):
-    print(dictionary, word, answer)
-    return True if dictionary[word] == answer else False
+    if dictionary[word] == answer:
+        return True
+    else:
+        try:
+            for value in dictionary[word]:  # to check the numbers quiz
+                if answer == value:
+                    return True
+        except ValueError:
+            return False
 
 
 # quiz function
@@ -40,31 +47,30 @@ def quiz(selection):
         selection = days
 
     # list containing the questions and answers
-    questions = selection.items()
+    questions = list(selection.items())
+    random.shuffle(questions)
 
     # total number of questions
     total = len(questions)
 
     # count up the amount of correct answers
     correct_answers = 0
-    rounds = 0
 
     # ask user questions
-    while rounds != total:
+    for word in questions:
         # select a random word from dictionary
-        question = random.choice(list(selection))
-        print(question)
+        question = word
+        print(question[0])
 
         # User inputs an answer
         guess = input().lower()
-        answer = check_answer(selection, question, guess)
+        answer = check_answer(selection, question[0], guess)
         if answer:
             print("correct\n")
             correct_answers += 1
         else:
             print("incorrect")
-            print(f"the correct answer was {question}\n")
-        rounds += 1
+            print(f"the correct answer was {question[1]}\n")
 
     # Score output
     print(f"Score: {correct_answers}/{total}")
