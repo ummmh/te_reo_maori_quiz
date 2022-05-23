@@ -39,9 +39,9 @@ def quiz(selection):
     # total number of questions
     total = len(questions)
 
-    for item in questions:  # for testing
-        print(item)
-    print()
+    #for item in questions:  # for testing
+    #    print(item)
+    #print()
 
     # count up the amount of correct answers
     correct_answers = 0
@@ -62,11 +62,11 @@ def quiz(selection):
                 #print(f"correct answers = {correct_answers}")  # for testing
             else:
                 print("incorrect")
-                print(f"the correct number was {question[1]}\n")
+                print(f"the correct answer was {question[1]}\n")
                 #print(f"correct answers = {correct_answers}")  # for testing
         except IndexError:
             print("incorrect")
-            print(f"the correct number was {question[1]}\n")
+            print(f"the correct answer was {question[1]}\n")
 
     # Score output
     print(f"Score: {correct_answers}/{total}")
