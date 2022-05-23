@@ -7,6 +7,12 @@ Created by Janna Lei Eugenio
 import random  # to select a random word from the list
 
 
+# function to check the answer
+def check_answer(dictionary, word, answer):
+    print(dictionary, word, answer)
+    return True if dictionary[word] == answer else False
+
+
 # quiz function
 def quiz(selection):
     # separate dictionaries relating to quiz selection
@@ -34,29 +40,31 @@ def quiz(selection):
         selection = days
 
     # list containing the questions and answers
-    questions = list(selection.items())
-    random.shuffle(questions)
+    questions = selection.items()
 
     # total number of questions
     total = len(questions)
 
     # count up the amount of correct answers
     correct_answers = 0
+    rounds = 0
 
     # ask user questions
-    for word in questions:
+    while rounds != total:
         # select a random word from dictionary
-        question = word
-        print(question[0])
+        question = random.choice(list(selection))
+        print(question)
 
         # User inputs an answer
         guess = input().lower()
-        if guess in question[1]:
+        answer = check_answer(selection, question, guess)
+        if answer:
             print("correct\n")
             correct_answers += 1
         else:
             print("incorrect")
-            print(f"the correct answer was {question[1]}\n")
+            print(f"the correct answer was {question}\n")
+        rounds += 1
 
     # Score output
     print(f"Score: {correct_answers}/{total}")
