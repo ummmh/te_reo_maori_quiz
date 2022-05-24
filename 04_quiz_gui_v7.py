@@ -128,10 +128,12 @@ class Colours(tk.Frame):
 
         # Start quiz button (column 1)
         self.start_button = tk.Button(self.buttons_frame, font="Helvetica 14",
-                                      bg="white", text="Start Quiz")
+                                      bg="white", text="Start Quiz",
+                                      command=self.start_quiz)
+        self.start_button.grid(row=0, column=1)
 
     def start_quiz(self):
-        pass
+        print("start")
 
 
 class Numbers(tk.Frame):
@@ -169,10 +171,12 @@ class Numbers(tk.Frame):
 
         # Start quiz button (column 1)
         self.start_button = tk.Button(self.buttons_frame, font="Helvetica 14",
-                                      bg="white", text="Start Quiz")
+                                      bg="white", text="Start Quiz",
+                                      command=self.start_quiz)
+        self.start_button.grid(row=0, column=1)
 
     def start_quiz(self):
-        pass
+        print("start")
 
 
 class Days(tk.Frame):
@@ -209,10 +213,12 @@ class Days(tk.Frame):
 
         # Start quiz button (column 1)
         self.start_button = tk.Button(self.buttons_frame, font="Helvetica 14",
-                                      bg="white", text="Start Quiz")
+                                      bg="white", text="Start Quiz",
+                                      command=self.start_quiz)
+        self.start_button.grid(row=0, column=1)
 
     def start_quiz(self):
-        pass
+        print("start")
 
 
 # quiz function
