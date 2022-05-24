@@ -222,8 +222,15 @@ class Days(tk.Frame):
         print("start days")
 
         # changes the format of the window
-        self.days_heading.configure(text="question")
+        self.days_frame.configure(padx=114, pady=32)
+        self.days_text.configure(font="Helvetica 14", text="question")
+        # gets rid of the start and back button
         self.back_bttn.destroy()
+        self.start_button.destroy()
+
+        # adds an entry box
+        self.answer_box = tk.Entry(self.buttons_frame)
+        self.answer_box.grid()
 
 
 
