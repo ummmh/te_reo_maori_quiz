@@ -1,0 +1,234 @@
+"""Component 4 of Te Reo Māori Quiz
+Incorporating 03_quiz_v2 with 02_quiz_gui_v6 - start button now changes the
+format of the quiz windows
+Created by Janna Lei Eugenio
+20/05/2022
+"""
+
+import tkinter as tk
+from tkinter import *
+import random  # to select a random word from the list
+
+
+# Main window
+class MainWindow(tk.Tk):
+    def __init__(self, *args, **kwargs):
+        Tk.__init__(self, *args, **kwargs)
+
+        # main frame where all the pages are stored
+        container = tk.Frame(self)
+        container.grid(row=0, column=0, sticky="nsew")
+
+        # stores the pages
+        self.pages = {}
+
+        # adds all the classes to pages so can be shown
+        for p in (MainMenu, Colours, Numbers, Days):
+            page_name = p.__name__
+            frame = p(parent=container, controller=self)
+            frame.grid(row=0, column=0, sticky="nsew")
+            self.pages[page_name] = frame
+        self.show_page("MainMenu")
+
+    # function to change pages
+    def show_page(self, page_name):
+        page = self.pages[page_name]
+        page.tkraise()
+
+
+# Main menu
+class MainMenu(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+
+        # Formatting variables
+        background_colour = "white"
+
+        # Main menu Screen GUI
+        self.main_frame = tk.Frame(self, bg=background_colour,
+                                   padx=10, pady=10)
+        self.main_frame.grid(row=0, column=0, sticky="nsew")
+
+        # Te Reo Māori Quiz Heading (row 0)
+        self.main_heading = tk.Label(self.main_frame, text="Te Reo Māori Quiz",
+                                  font="Helvetica 16 bold",
+                                  bg=background_colour)
+        self.main_heading.grid(row=0)
+
+        # Introduction (row 1) - filler text for now
+        self.main_intro_label = tk.Label(self.main_frame,
+                                         text="(introduction)",
+                                         font="Helvetica 10", pady=5,
+                                         bg=background_colour)
+        self.main_intro_label.grid(row=1)
+
+        # Quiz select button frame (row 2)
+        self.quiz_select_buttons_frame = tk.Frame(self.main_frame, pady=10,
+                                               bg=background_colour)
+        self.quiz_select_buttons_frame.grid(row=2)
+
+        # Colours quiz button (row 2, column 0)
+        self.colours_button = tk.Button(self.quiz_select_buttons_frame,
+                                        text="Colours", font="Helvetica 14",
+                                        bg="#F8CECC",  # light red
+                                        command=lambda:
+                                        controller.show_page("Colours"))
+        self.colours_button.grid(row=0, column=0)
+
+        # Numbers quiz button (row 2, column 1)
+        self.numbers_button = tk.Button(self.quiz_select_buttons_frame,
+                                        text="Numbers 1-10",  # off white
+                                        font="Helvetica 14", bg="#F5F5F5",
+                                        command=lambda:
+                                        controller.show_page("Numbers"))
+        self.numbers_button.grid(row=0, column=1)
+
+        # Days of the Week quiz button (row 2, column 2)
+        self.days_button = tk.Button(self.quiz_select_buttons_frame,
+                                     text="Days of the Week",  # light grey
+                                     font="Helvetica 14", bg="#BAC8D3",
+                                     command=lambda:
+                                     controller.show_page("Days"))
+        self.days_button.grid(row=0, column=2)
+
+
+# Quiz GUI
+class Colours(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+
+        background = "#F8CECC"  # background = light red
+
+        # Quiz frame
+        self.colours_frame = tk.Frame(self, bg=background, padx=68, pady=25)
+        self.colours_frame.grid()
+
+        # Quiz heading (row 0)
+        self.colours_heading = tk.Label(self.colours_frame,
+                                        font="Helvetica 16 bold",
+                                        bg=background, text="Colours")
+        self.colours_heading.grid(row=0, column=1)
+
+        # Quiz instructions (row 1)
+        self.colours_text = tk.Label(self.colours_frame, font="Helvetica 10",
+                                     bg=background, text="(intro)")
+        self.colours_text.grid(row=1, column=1)
+
+        # Button frame (row 2)
+        self.buttons_frame = tk.Frame(self.colours_frame, bg=background)
+        self.buttons_frame.grid(row=2, column=1)
+
+        # Back button (column 0)
+        self.back_bttn = tk.Button(self.buttons_frame, font="Helvetica 14",
+                                   bg="white", text="Back to Main Menu",
+                                   command=lambda:
+                                   controller.show_page("MainMenu"))
+        self.back_bttn.grid(row=0, column=0)
+
+        # Start quiz button (column 1)
+        self.start_button = tk.Button(self.buttons_frame, font="Helvetica 14",
+                                      bg="white", text="Start Quiz",
+                                      command=self.start_quiz)
+        self.start_button.grid(row=0, column=1)
+
+    def start_quiz(self):
+        print("start colours")
+
+
+class Numbers(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+
+        background = "#F5F5F5"  # background = off white
+
+        # Quiz frame
+        self.numbers_frame = tk.Frame(self, bg=background, padx=68, pady=25)
+        self.numbers_frame.grid()
+
+        # Quiz heading (row 0)
+        self.numbers_heading = tk.Label(self.numbers_frame,
+                                        font="Helvetica 16 bold",
+                                        bg=background, text="Numbers 1-10")
+        self.numbers_heading.grid(row=0, column=1)
+
+        # Quiz instructions (row 1)
+        self.numbers_text = tk.Label(self.numbers_frame, font="Helvetica 10",
+                                     bg=background, text="(intro)")
+        self.numbers_text.grid(row=1, column=1)
+
+        # Button frame (row 2)
+        self.buttons_frame = tk.Frame(self.numbers_frame, bg=background)
+        self.buttons_frame.grid(row=2, column=1)
+
+        # Back button (column 0)
+        self.back_bttn = tk.Button(self.buttons_frame, font="Helvetica 14",
+                                   bg="white", text="Back to Main Menu",
+                                   command=lambda:
+                                   controller.show_page("MainMenu"))
+        self.back_bttn.grid(row=0, column=0)
+
+        # Start quiz button (column 1)
+        self.start_button = tk.Button(self.buttons_frame, font="Helvetica 14",
+                                      bg="white", text="Start Quiz",
+                                      command=self.start_quiz)
+        self.start_button.grid(row=0, column=1)
+
+    def start_quiz(self):
+        print("start numbers")
+
+
+class Days(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+
+        background = "#BAC8D3"  # background = light grey
+
+        # Quiz frame
+        self.days_frame = tk.Frame(self, bg=background, padx=68, pady=25)
+        self.days_frame.grid()
+
+        # Quiz heading (row 0)
+        self.days_heading = tk.Label(self.days_frame, font="Helvetica 16 bold",
+                                     bg=background, text="Days of the Week")
+        self.days_heading.grid(row=0, column=1)
+
+        # Quiz instructions (row 1)
+        self.days_text = tk.Label(self.days_frame, font="Helvetica 10",
+                                  bg=background, text="(intro)")
+        self.days_text.grid(row=1, column=1)
+
+        # Button frame (row 2)
+        self.buttons_frame = tk.Frame(self.days_frame, bg=background)
+        self.buttons_frame.grid(row=2, column=1)
+
+        # Back button (column 0)
+        self.back_bttn = tk.Button(self.buttons_frame, font="Helvetica 14",
+                                   bg="white", text="Back to Main Menu",
+                                   command=lambda:
+                                   controller.show_page("MainMenu"))
+        self.back_bttn.grid(row=0, column=0)
+
+        # Start quiz button (column 1)
+        self.start_button = tk.Button(self.buttons_frame, font="Helvetica 14",
+                                      bg="white", text="Start Quiz",
+                                      command=self.start_quiz)
+        self.start_button.grid(row=0, column=1)
+
+    def start_quiz(self):
+        print("start days")
+
+        # changes the format of the window
+        self.days_heading.configure(text="question")
+        self.back_bttn.destroy()
+
+
+
+# MAIN ROUTINE
+if __name__ == "__main__":
+    root = MainWindow()
+    root.title("Te Reo Māori Quiz")
+    root.mainloop()
