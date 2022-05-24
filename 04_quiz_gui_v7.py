@@ -102,7 +102,7 @@ class Colours(tk.Frame):
         background = "#F8CECC"  # background = light red
 
         # Quiz frame
-        self.colours_frame = tk.Frame(self, bg=background, padx=117, pady=25)
+        self.colours_frame = tk.Frame(self, bg=background, padx=68, pady=25)
         self.colours_frame.grid()
 
         # Quiz heading (row 0)
@@ -134,7 +134,7 @@ class Colours(tk.Frame):
         self.start_button.grid(row=0, column=1)
 
     def start_quiz(self):
-        print("start")
+        print("start colours")
 
 
 class Numbers(tk.Frame):
@@ -145,13 +145,13 @@ class Numbers(tk.Frame):
         background = "#F5F5F5"  # background = off white
 
         # Quiz frame
-        self.numbers_frame = tk.Frame(self, bg=background, padx=117, pady=25)
+        self.numbers_frame = tk.Frame(self, bg=background, padx=68, pady=25)
         self.numbers_frame.grid()
 
         # Quiz heading (row 0)
         self.numbers_heading = tk.Label(self.numbers_frame,
                                         font="Helvetica 16 bold",
-                                        bg=background, text="Numbers")
+                                        bg=background, text="Numbers 1-10")
         self.numbers_heading.grid(row=0, column=1)
 
         # Quiz instructions (row 1)
@@ -177,7 +177,7 @@ class Numbers(tk.Frame):
         self.start_button.grid(row=0, column=1)
 
     def start_quiz(self):
-        print("start")
+        print("start numbers")
 
 
 class Days(tk.Frame):
@@ -188,12 +188,12 @@ class Days(tk.Frame):
         background = "#BAC8D3"  # background = light grey
 
         # Quiz frame
-        self.days_frame = tk.Frame(self, bg=background, padx=117, pady=25)
+        self.days_frame = tk.Frame(self, bg=background, padx=68, pady=25)
         self.days_frame.grid()
 
         # Quiz heading (row 0)
         self.days_heading = tk.Label(self.days_frame, font="Helvetica 16 bold",
-                                     bg=background, text="Days")
+                                     bg=background, text="Days of the Week")
         self.days_heading.grid(row=0, column=1)
 
         # Quiz instructions (row 1)
@@ -219,7 +219,7 @@ class Days(tk.Frame):
         self.start_button.grid(row=0, column=1)
 
     def start_quiz(self):
-        print("start")
+        print("start days")
 
 
 # MAIN ROUTINE
