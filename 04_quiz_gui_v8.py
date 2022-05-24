@@ -136,6 +136,17 @@ class Colours(tk.Frame):
     def start_quiz(self):
         print("start colours")
 
+        # changes the format of the window
+        self.colours_frame.configure(padx=114, pady=32)
+        self.colours_text.configure(font="Helvetica 14", text="question")
+        # gets rid of the start and back button
+        self.back_bttn.destroy()
+        self.start_button.destroy()
+
+        # adds an entry box
+        self.answer_box = tk.Entry(self.buttons_frame)
+        self.answer_box.grid()
+
 
 class Numbers(tk.Frame):
     def __init__(self, parent, controller):
@@ -178,6 +189,17 @@ class Numbers(tk.Frame):
 
     def start_quiz(self):
         print("start numbers")
+
+        # changes the format of the window
+        self.numbers_frame.configure(padx=114, pady=32)
+        self.numbers_text.configure(font="Helvetica 14", text="question")
+        # gets rid of the start and back button
+        self.back_bttn.destroy()
+        self.start_button.destroy()
+
+        # adds an entry box
+        self.answer_box = tk.Entry(self.buttons_frame)
+        self.answer_box.grid()
 
 
 class Days(tk.Frame):
