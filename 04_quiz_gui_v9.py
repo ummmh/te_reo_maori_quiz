@@ -248,11 +248,101 @@ class Days(tk.Frame):
         # gets rid of the start and back button
         self.back_bttn.destroy()
         self.start_button.destroy()
-
         # adds an entry box
         self.answer_box = tk.Entry(self.buttons_frame)
         self.answer_box.grid()
 
+        #quiz("D", self.days_text, self.answer_box, self.answer_button)
+
+        days = [["Rāhina", "monday"], ["Rātū", "tuesday"], ["Rāapa", "wednesday"],
+            ["Rāpare", "thursday"], ["Rāmere", "friday"],
+            ["Rāhoroi", "saturday"], ["Rātapu", "sunday"]]
+        random.shuffle(days)
+        total = len(days)
+        correct_answers = 0
+
+        for word in days:
+            # Asks the question
+            self.days_text.configure(text=word[0])
+
+            self.answer_button = tk.Button(self.buttons_frame, bg="white",
+                                       font="Helvetica 14", text="Enter", command=lambda: self.check_answer(word, correct_answers))
+            self.answer_button.grid(row=1)
+            continue
+
+    def check_answer(self, question, correct_answers):
+        answer = self.answer_box.get()
+        # User inputs an answer
+        try:
+            if answer == question[1] or answer == question[2]:
+                self.answer_box.configure(bg="green")
+                correct_answers += 1
+            else:
+                self.answer_box.configure(bg="red", text=question[1], fg="white")
+        except IndexError:
+            self.answer_box.configure(bg="red", text=question[1], fg="white")
+        self.answer_box.delete(0, END)
+        return
+
+# # quiz function
+# def quiz(selection, q_displayed, entry_box, entry):
+#     # separate lists relating to quiz selection
+#     colours = [["Mā", "white"], ["Whero", "red"], ["Kākāriki", "green"],
+#                ["Mangu", "black"], ["Pango", "black"], ["Kōwhai", "yellow"],
+#                ["Parauri", "brown"], ["Kikorangi", "blue"],
+#                ["Karaka", "orange"], ["Waiporoporo", "purple"],
+#                ["Kiwikiwi", "grey"]]
+#
+#     numbers = [["Tahi", "one", "1"], ["Rua", "two", "2"],
+#                ["Toru", "three", "3"], ["Whā", "four", "4"],
+#                ["Rima", "five", "5"], ["Ono", "six", "6"],
+#                ["Whitu", "seven", "7"], ["Waru", "eight", "8"],
+#                ["Iwa", "nine", "9"], ["Tekau", "ten", "10"]]
+#
+#     days = [["Rāhina", "monday"], ["Rātū", "tuesday"], ["Rāapa", "wednesday"],
+#             ["Rāpare", "thursday"], ["Rāmere", "friday"],
+#             ["Rāhoroi", "saturday"], ["Rātapu", "sunday"]]
+#
+#     # list containing the questions and answers
+#     questions = []
+#
+#     if selection == "C":
+#         questions = colours
+#     elif selection == "N":
+#         questions = numbers
+#     elif selection == "D":
+#         questions = days
+#
+#     # from quiz_v3 - shuffles the list randomly beforehand
+#     random.shuffle(questions)
+#
+#     # total number of questions
+#     total = len(questions)
+#
+#     # count up the amount of correct answers
+#     correct_answers = 0
+#
+#     # ask user questions
+#     for word in questions:
+#         # Asks the question
+#         question = word
+#         q_displayed.configure(text=question[0])
+#
+#         # User inputs an answer
+#         answer = entry
+#         try:
+#             if answer == question[1] or answer == question[2]:
+#                 entry_box.configure(bg="green")
+#                 correct_answers += 1
+#             else:
+#                 entry_box.configure(bg="red", text=question[1], fg="white")
+#         except IndexError:
+#             entry_box.configure(bg="red", text=question[1], fg="white")
+#         entry_box.configure(bg="white", fg="black", text="")
+#
+#     # Score output
+#     print(f"Score: {correct_answers}/{total}")
+#     return f"{correct_answers}/{total}"
 
 
 # MAIN ROUTINE
