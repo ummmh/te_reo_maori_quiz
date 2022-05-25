@@ -137,7 +137,7 @@ class Colours(tk.Frame):
         print("start colours")
 
         # changes the format of the window
-        self.colours_frame.configure(padx=114, pady=32)
+        self.colours_frame.configure(padx=143, pady=32)
         self.colours_text.configure(font="Helvetica 14", text="question")
         # gets rid of the start and back button
         self.back_bttn.destroy()
@@ -191,7 +191,7 @@ class Numbers(tk.Frame):
         print("start numbers")
 
         # changes the format of the window
-        self.numbers_frame.configure(padx=114, pady=32)
+        self.numbers_frame.configure(padx=131, pady=32)
         self.numbers_text.configure(font="Helvetica 14", text="question")
         # gets rid of the start and back button
         self.back_bttn.destroy()
