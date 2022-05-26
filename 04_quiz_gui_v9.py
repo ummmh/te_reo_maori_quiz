@@ -294,8 +294,8 @@ class Days(tk.Frame):
             self.answer_box.delete(0, END)
             return
 
-# # # quiz function
-# def quiz(selection, q_displayed, entry_box, entry):
+# # quiz function
+# def quiz(selection):
 #     # separate lists relating to quiz selection
 #     colours = [["Mā", "white"], ["Whero", "red"], ["Kākāriki", "green"],
 #                ["Mangu", "black"], ["Pango", "black"], ["Kōwhai", "yellow"],
@@ -323,36 +323,40 @@ class Days(tk.Frame):
 #     elif selection == "D":
 #         questions = days
 #
-#     # from quiz_v3 - shuffles the list randomly beforehand
-#     random.shuffle(questions)
-#
 #     # total number of questions
 #     total = len(questions)
+#
+#     #for item in questions:  # for testing
+#     #    print(item)
+#     #print()
 #
 #     # count up the amount of correct answers
 #     correct_answers = 0
 #
 #     # ask user questions
-#     for word in questions:
+#     while questions:
 #         # Asks the question
-#         question = word
-#         q_displayed.configure(text=question[0])
+#         question = random.choice(questions)  # select a random colour from list
+#         print(question[0])
+#         questions.remove(question)
 #
 #         # User inputs an answer
-#         answer = entry
+#         answer = input().lower()
 #         try:
 #             if answer == question[1] or answer == question[2]:
-#                 entry_box.configure(bg="green")
+#                 print("correct\n")
 #                 correct_answers += 1
+#                 #print(f"correct answers = {correct_answers}")  # for testing
 #             else:
-#                 entry_box.configure(bg="red", text=question[1], fg="white")
+#                 print("incorrect")
+#                 print(f"the correct answer was {question[1]}\n")
+#                 #print(f"correct answers = {correct_answers}")  # for testing
 #         except IndexError:
-#             entry_box.configure(bg="red", text=question[1], fg="white")
-#         entry_box.configure(bg="white", fg="black", text="")
+#             print("incorrect")
+#             print(f"the correct answer was {question[1]}\n")
 #
 #     # Score output
 #     print(f"Score: {correct_answers}/{total}")
-#     return f"{correct_answers}/{total}"
 
 
 # MAIN ROUTINE
