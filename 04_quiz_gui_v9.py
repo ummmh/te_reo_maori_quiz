@@ -261,17 +261,23 @@ class Days(tk.Frame):
         total = len(days)
         correct_answers = 0
 
-        for word in days:
-            question = word
+        while days:
+            question = random.choice(days)
             # Asks the question
             self.days_text.configure(text=question[0])
+            days.remove(question)
 
             self.answer_button = tk.Button(self.buttons_frame, bg="white",
                                        font="Helvetica 14", text="Enter", command=lambda: self.check_answer(question, correct_answers))
             self.answer_button.grid(row=1)
 
+
+        #self.answer_box.destroy()
+        #self.days_text.configure(text=f"Score: {correct_answers}/{total}")
+
+
     def check_answer(self, question, correct_answers):
-        answer = self.answer_box.get()
+        answer = self.answer_box.get().lower()
         # User inputs an answer
         try:
             if answer == question[1] or answer == question[2]:
