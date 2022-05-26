@@ -307,6 +307,7 @@ def quiz(selection, q_displayed, enter, entry_box):
     # Score output
     print(f"Score: {correct_answers}/{total}")
 
+
 def check_answer(entry_box, question, correct_answers):
     answer = entry_box.get().lower
     try:
