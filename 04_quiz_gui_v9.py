@@ -302,7 +302,8 @@ def quiz(selection, q_displayed, enter, entry_box):
         questions.remove(question)
 
         # User inputs an answer
-        enter.configure(command= lambda: check_answer(entry_box, question, correct_answers))
+        enter.configure(command= lambda: check_answer(entry_box, question,
+                                                      correct_answers))
         enter.waitvar()
 
     # Score output
