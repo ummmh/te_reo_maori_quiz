@@ -146,6 +146,12 @@ class Colours(tk.Frame):
         self.answer_box = tk.Entry(self.buttons_frame)
         self.answer_box.grid()
 
+        self.answer_button = tk.Button(self.buttons_frame, bg="white",
+                                       font="Helvetica 14", text="Enter")
+        self.answer_button.grid(row=1)
+
+        quiz("C", self.colours_text, self.answer_button, self.answer_box)
+
 
 class Numbers(tk.Frame):
     def __init__(self, parent, controller):
@@ -199,6 +205,12 @@ class Numbers(tk.Frame):
         # adds an entry box
         self.answer_box = tk.Entry(self.buttons_frame)
         self.answer_box.grid()
+
+        self.answer_button = tk.Button(self.buttons_frame, bg="white",
+                                       font="Helvetica 14", text="Enter")
+        self.answer_button.grid(row=1)
+
+        quiz("N", self.numbers_text, self.answer_button, self.answer_box)
 
 
 class Days(tk.Frame):
@@ -324,7 +336,6 @@ def check_answer(entry_box, question, correct_answers):
         entry_box.configure(bg="red", text=question[1], fg="white")
         entry_box.delete(0, END)
     return
-
 
 
 # MAIN ROUTINE
