@@ -330,16 +330,13 @@ def check_answer(entry, question, correct, variable):
         if answer == question[1] or answer == question[2]:
             entry.configure(bg="lime")
             correct += 1
-            entry.delete(0, END)
         else:
             entry.configure(bg="red", text=question[1], fg="white")
-            entry.delete(0, END)
     except IndexError:
         entry.configure(bg="red", text=question[1], fg="white")
-        entry.delete(0, END)
+    entry.delete(0, END)
     variable.set(1)
     print(correct)
-    return
 
 
 # MAIN ROUTINE
