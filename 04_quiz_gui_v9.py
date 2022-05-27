@@ -273,6 +273,7 @@ class Days(tk.Frame):
 
 # quiz function
 def quiz(selection, q_displayed, enter, entry_box):
+    round = tk.IntVar()
     # separate lists relating to quiz selection
     colours = [["Mā", "white"], ["Whero", "red"], ["Kākāriki", "green"],
                ["Mangu", "black"], ["Pango", "black"], ["Kōwhai", "yellow"],
@@ -315,30 +316,29 @@ def quiz(selection, q_displayed, enter, entry_box):
 
         # User inputs an answer
         enter.configure(command=lambda: check_answer(entry_box, question,
-                                                      correct_answers))
-        # enter.waitvar()
+                                                      correct_answers, round))
+        enter.wait_variable(round)
 
     # Score output
     print(f"Score: {correct_answers}/{total}")
 
 
-def check_answer(entry_box, question, correct_answers):
-    answer = entry_box.get()
+def check_answer(entry, question, correct, variable):
+    answer = entry.get()
     answer.lower()
     try:
         if answer == question[1] or answer == question[2]:
-            entry_box.configure(bg="lime")
-            correct_answers += 1
-            entry_box.delete(0, END)
-            return
+            entry.configure(bg="lime")
+            correct += 1
+            entry.delete(0, END)
         else:
-            entry_box.configure(bg="red", text=question[1], fg="white")
-            entry_box.delete(0, END)
-            return
+            entry.configure(bg="red", text=question[1], fg="white")
+            entry.delete(0, END)
     except IndexError:
-        entry_box.configure(bg="red", text=question[1], fg="white")
-        entry_box.delete(0, END)
-        return
+        entry.configure(bg="red", text=question[1], fg="white")
+        entry.delete(0, END)
+    variable.set(1)
+    return correct
 
 
 # MAIN ROUTINE
