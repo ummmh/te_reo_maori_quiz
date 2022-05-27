@@ -314,28 +314,31 @@ def quiz(selection, q_displayed, enter, entry_box):
         questions.remove(question)
 
         # User inputs an answer
-        enter.configure(command= lambda: check_answer(entry_box, question,
+        enter.configure(command=lambda: check_answer(entry_box, question,
                                                       correct_answers))
-        enter.waitvar()
+        # enter.waitvar()
 
     # Score output
     print(f"Score: {correct_answers}/{total}")
 
 
 def check_answer(entry_box, question, correct_answers):
-    answer = entry_box.get().lower
+    answer = entry_box.get()
+    answer.lower()
     try:
         if answer == question[1] or answer == question[2]:
             entry_box.configure(bg="lime")
             correct_answers += 1
             entry_box.delete(0, END)
+            return
         else:
             entry_box.configure(bg="red", text=question[1], fg="white")
             entry_box.delete(0, END)
+            return
     except IndexError:
-        entry_box.configure(bg="red", text=question[1], fg="white")
+        entry_box.configure(bg="yellow", text=question[1], fg="white")
         entry_box.delete(0, END)
-    return
+        return
 
 
 # MAIN ROUTINE
