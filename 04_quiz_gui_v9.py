@@ -1,5 +1,5 @@
 """Component 4 of Te Reo Māori Quiz
-Incorporating 03_quiz_v2 with 02_quiz_gui_v6 - only implemented for days quiz
+Incorporating 03_quiz_v2 with 02_quiz_gui_v6
 Created by Janna Lei Eugenio
 24/05/2022
 """
