@@ -324,8 +324,7 @@ def quiz(selection, q_displayed, enter, entry_box):
 
 
 def check_answer(entry, question, correct, variable):
-    answer = entry.get()
-    answer.lower()
+    answer = entry.get().lower()
     try:
         if answer == question[1] or answer == question[2]:
             entry.configure(bg="lime")
