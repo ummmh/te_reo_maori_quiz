@@ -1,5 +1,5 @@
 """Component 4 of Te Reo Māori Quiz
-Incorporating 03_quiz_v2 with 02_quiz_gui_v6
+Incorporating 03_quiz_v2 with 02_quiz_gui_v6 - output score doesn't work yet
 Created by Janna Lei Eugenio
 24/05/2022
 """
