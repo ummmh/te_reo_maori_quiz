@@ -336,7 +336,7 @@ def check_answer(entry_box, question, correct_answers):
             entry_box.delete(0, END)
             return
     except IndexError:
-        entry_box.configure(bg="yellow", text=question[1], fg="white")
+        entry_box.configure(bg="red", text=question[1], fg="white")
         entry_box.delete(0, END)
         return
 
