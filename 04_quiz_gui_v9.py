@@ -51,8 +51,8 @@ class MainMenu(tk.Frame):
 
         # Te Reo Māori Quiz Heading (row 0)
         self.main_heading = tk.Label(self.main_frame, text="Te Reo Māori Quiz",
-                                  font="Helvetica 16 bold",
-                                  bg=background_colour)
+                                     font="Helvetica 16 bold",
+                                     bg=background_colour)
         self.main_heading.grid(row=0)
 
         # Introduction (row 1) - filler text for now
@@ -64,7 +64,7 @@ class MainMenu(tk.Frame):
 
         # Quiz select button frame (row 2)
         self.quiz_select_buttons_frame = tk.Frame(self.main_frame, pady=10,
-                                               bg=background_colour)
+                                                  bg=background_colour)
         self.quiz_select_buttons_frame.grid(row=2)
 
         # Colours quiz button (row 2, column 0)
@@ -316,7 +316,7 @@ def quiz(selection, q_displayed, enter, entry_box):
 
         # User inputs an answer
         enter.configure(command=lambda: check_answer(entry_box, question,
-                                                      correct_answers, round))
+                                                     correct_answers, round))
         enter.wait_variable(round)
 
     # Score output
@@ -338,7 +338,8 @@ def check_answer(entry, question, correct, variable):
         entry.configure(bg="red", text=question[1], fg="white")
         entry.delete(0, END)
     variable.set(1)
-    return correct
+    print(correct)
+    return
 
 
 # MAIN ROUTINE
