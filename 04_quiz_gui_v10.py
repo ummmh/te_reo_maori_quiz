@@ -308,7 +308,7 @@ def quiz(selection, q_displayed, enter, entry_box, back):
     total = len(questions)
 
     # count up the amount of correct answers
-    correct_answers = 0
+    correct_answers = []
 
     # ask user questions
     while questions:
@@ -323,7 +323,7 @@ def quiz(selection, q_displayed, enter, entry_box, back):
         enter.wait_variable(round)
 
     # Score output
-    q_displayed.configure(text=f"Score: {correct_answers}/{total}")
+    q_displayed.configure(text=f"Score: {len(correct_answers)}/{total}")
     enter.destroy()
     entry_box.destroy()
     back.grid()
@@ -334,12 +334,12 @@ def check_answer(entry, question, correct, variable):
     answer.lower()
     try:
         if answer == question[1] or answer == question[2]:
-            entry.configure(bg="lime")
-            correct += 1
+            entry.configure(bg="lime", fg="black")
+            correct.append(1)
         else:
-            entry.configure(bg="red", text=question[1], fg="white")
+            entry.configure(bg="red", fg="white")
     except IndexError:
-        entry.configure(bg="red", text=question[1], fg="white")
+        entry.configure(bg="red", fg="white")
     entry.delete(0, END)
     variable.set(1)
     print(correct)
