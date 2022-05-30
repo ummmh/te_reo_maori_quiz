@@ -133,8 +133,6 @@ class Colours(tk.Frame):
         self.start_button.grid(row=0, column=1)
 
     def start_quiz(self):
-        print("start colours")
-
         # changes the format of the window
         self.colours_frame.configure(padx=143, pady=32)
         self.colours_text.configure(font="Helvetica 14", text="question")
@@ -194,8 +192,6 @@ class Numbers(tk.Frame):
         self.start_button.grid(row=0, column=1)
 
     def start_quiz(self):
-        print("start numbers")
-
         # changes the format of the window
         self.numbers_frame.configure(padx=131, pady=32)
         self.numbers_text.configure(font="Helvetica 14", text="question")
@@ -254,8 +250,6 @@ class Days(tk.Frame):
         self.start_button.grid(row=0, column=1)
 
     def start_quiz(self):
-        print("start days")
-
         # changes the format of the window
         self.days_frame.configure(padx=114, pady=32)
         self.days_text.configure(font="Helvetica 14", text="question")
