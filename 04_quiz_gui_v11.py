@@ -255,7 +255,7 @@ class Days(tk.Frame):
         self.days_text.configure(font="Helvetica 14", text="question")
         # gets rid of the start and back button
         self.back_bttn.grid_remove()
-        self.start_button.destroy()
+        self.start_button.grid_remove()
         # adds an entry box
         self.answer_box = tk.Entry(self.buttons_frame)
         self.answer_box.grid()
