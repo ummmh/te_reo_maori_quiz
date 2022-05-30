@@ -149,7 +149,7 @@ class Colours(tk.Frame):
         self.answer_button.grid(row=1)
 
         quiz("C", self.colours_text, self.answer_button, self.answer_box,
-             self.back_bttn, self.colours_frame)
+             self.back_bttn, self.start_button, self.colours_frame)
 
 
 class Numbers(tk.Frame):
@@ -208,7 +208,7 @@ class Numbers(tk.Frame):
         self.answer_button.grid(row=1)
 
         quiz("N", self.numbers_text, self.answer_button, self.answer_box,
-             self.back_bttn, self.numbers_frame)
+             self.back_bttn, self.start_button, self.numbers_frame)
 
 
 class Days(tk.Frame):
@@ -265,12 +265,12 @@ class Days(tk.Frame):
         self.answer_button.grid(row=1)
 
         quiz("D", self.days_text, self.answer_button, self.answer_box,
-             self.back_bttn, self.days_frame)
+             self.back_bttn, self.start_button, self.days_frame)
 
 
 # quiz function
-def quiz(selection, q_displayed, enter, entry_box, back, frame):
-    round = tk.IntVar()
+def quiz(selection, q_displayed, enter, entry_box, back, start, frame):
+    rounds = tk.IntVar()  # variable to make loop wait for button press
     # separate lists relating to quiz selection
     colours = [["Mā", "white"], ["Whero", "red"], ["Kākāriki", "green"],
                ["Mangu", "black"], ["Pango", "black"], ["Kōwhai", "yellow"],
@@ -313,15 +313,19 @@ def quiz(selection, q_displayed, enter, entry_box, back, frame):
 
         # User inputs an answer
         enter.configure(command=lambda: check_answer(entry_box, question,
-                                                     correct_answers, round))
-        enter.wait_variable(round)  # loop waits until button is pressed
+                                                     correct_answers, rounds))
+        enter.wait_variable(rounds)  # loop waits until button is pressed
 
     # Score output
     q_displayed.configure(text=f"Score: {len(correct_answers)}/{total}")
-    enter.destroy()  # gets rid of entry button
+    # gets rid of entry button and enter box
+    enter.destroy()
     entry_box.destroy()
+    # adds back the back to main menu button and start button for replay
     back.grid()
-    frame.configure(padx=68, pady=25)
+    start.grid()
+    start.configure(text="Replay Quiz")
+    frame.configure(padx=68, pady=25) # makes frame go back to normal size
 
 
 # function to check if answer is correct
