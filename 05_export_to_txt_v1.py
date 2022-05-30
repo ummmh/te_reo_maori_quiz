@@ -42,7 +42,7 @@ def quiz(selection):
     # count up the amount of correct answers
     correct_answers = 0
 
-    # collects the
+    # collects the quiz answers and score, later to be converted to a .txt file
     history = ['Word in Māori - Word in english : Your answer']
 
     # ask user questions
@@ -70,6 +70,7 @@ def quiz(selection):
     score = f"Score: {correct_answers}/{total}"
     history.append(score)
 
+    # test to see if all the answers in the game was saved
     for item in history:
          print(item)
 
