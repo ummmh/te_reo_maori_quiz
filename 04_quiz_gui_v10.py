@@ -1,5 +1,5 @@
 """Component 4 of Te Reo Māori Quiz
-Incorporating 03_quiz_v2 with 02_quiz_gui_v6
+Incorporating 03_quiz_v2 with 02_quiz_gui_v6 - score outputs at the end
 Created by Janna Lei Eugenio
 27/05/2022
 """
@@ -139,8 +139,8 @@ class Colours(tk.Frame):
         self.colours_frame.configure(padx=143, pady=32)
         self.colours_text.configure(font="Helvetica 14", text="question")
         # gets rid of the start and back button
-        self.back_bttn.destroy()
-        self.start_button.destroy()
+        self.back_bttn.grid_remove()
+        self.start_button.grid_remove()
 
         # adds an entry box
         self.answer_box = tk.Entry(self.buttons_frame)
@@ -150,7 +150,8 @@ class Colours(tk.Frame):
                                        font="Helvetica 14", text="Enter")
         self.answer_button.grid(row=1)
 
-        quiz("C", self.colours_text, self.answer_button, self.answer_box)
+        quiz("C", self.colours_text, self.answer_button, self.answer_box,
+             self.back_bttn)
 
 
 class Numbers(tk.Frame):
@@ -199,8 +200,8 @@ class Numbers(tk.Frame):
         self.numbers_frame.configure(padx=131, pady=32)
         self.numbers_text.configure(font="Helvetica 14", text="question")
         # gets rid of the start and back button
-        self.back_bttn.destroy()
-        self.start_button.destroy()
+        self.back_bttn.grid_remove()
+        self.start_button.grid_remove()
 
         # adds an entry box
         self.answer_box = tk.Entry(self.buttons_frame)
@@ -210,7 +211,8 @@ class Numbers(tk.Frame):
                                        font="Helvetica 14", text="Enter")
         self.answer_button.grid(row=1)
 
-        quiz("N", self.numbers_text, self.answer_button, self.answer_box)
+        quiz("N", self.numbers_text, self.answer_button, self.answer_box,
+             self.back_bttn)
 
 
 class Days(tk.Frame):
@@ -258,7 +260,7 @@ class Days(tk.Frame):
         self.days_frame.configure(padx=114, pady=32)
         self.days_text.configure(font="Helvetica 14", text="question")
         # gets rid of the start and back button
-        self.back_bttn.destroy()
+        self.back_bttn.grid_remove()
         self.start_button.destroy()
         # adds an entry box
         self.answer_box = tk.Entry(self.buttons_frame)
@@ -268,11 +270,12 @@ class Days(tk.Frame):
                                        font="Helvetica 14", text="Enter")
         self.answer_button.grid(row=1)
 
-        quiz("D", self.days_text, self.answer_button, self.answer_box)
+        quiz("D", self.days_text, self.answer_button, self.answer_box,
+             self.back_bttn)
 
 
 # quiz function
-def quiz(selection, q_displayed, enter, entry_box):
+def quiz(selection, q_displayed, enter, entry_box, back):
     round = tk.IntVar()
     # separate lists relating to quiz selection
     colours = [["Mā", "white"], ["Whero", "red"], ["Kākāriki", "green"],
@@ -320,7 +323,10 @@ def quiz(selection, q_displayed, enter, entry_box):
         enter.wait_variable(round)
 
     # Score output
-    print(f"Score: {correct_answers}/{total}")
+    q_displayed.configure(text=f"Score: {correct_answers}/{total}")
+    enter.destroy()
+    entry_box.destroy()
+    back.grid()
 
 
 def check_answer(entry, question, correct, variable):
