@@ -151,7 +151,7 @@ class Colours(tk.Frame):
         self.answer_button.grid(row=1)
 
         quiz("C", self.colours_text, self.answer_button, self.answer_box,
-             self.back_bttn)
+             self.back_bttn, self.colours_frame)
 
 
 class Numbers(tk.Frame):
@@ -212,7 +212,7 @@ class Numbers(tk.Frame):
         self.answer_button.grid(row=1)
 
         quiz("N", self.numbers_text, self.answer_button, self.answer_box,
-             self.back_bttn)
+             self.back_bttn, self.numbers_frame)
 
 
 class Days(tk.Frame):
@@ -271,11 +271,11 @@ class Days(tk.Frame):
         self.answer_button.grid(row=1)
 
         quiz("D", self.days_text, self.answer_button, self.answer_box,
-             self.back_bttn)
+             self.back_bttn, self.days_frame)
 
 
 # quiz function
-def quiz(selection, q_displayed, enter, entry_box, back):
+def quiz(selection, q_displayed, enter, entry_box, back, frame):
     round = tk.IntVar()
     # separate lists relating to quiz selection
     colours = [["Mā", "white"], ["Whero", "red"], ["Kākāriki", "green"],
@@ -296,7 +296,7 @@ def quiz(selection, q_displayed, enter, entry_box, back):
 
     # list containing the questions and answers
     questions = []
-
+    # selects which list to use
     if selection == "C":
         questions = colours
     elif selection == "N":
@@ -320,29 +320,30 @@ def quiz(selection, q_displayed, enter, entry_box, back):
         # User inputs an answer
         enter.configure(command=lambda: check_answer(entry_box, question,
                                                      correct_answers, round))
-        enter.wait_variable(round)
+        enter.wait_variable(round)  # loop waits until button is pressed
 
     # Score output
     q_displayed.configure(text=f"Score: {len(correct_answers)}/{total}")
-    enter.destroy()
+    enter.destroy()  # gets rid of entry button
     entry_box.destroy()
     back.grid()
+    frame.configure(padx=68, pady=25)
 
 
+# function to check if answer is correct
 def check_answer(entry, question, correct, variable):
     answer = entry.get()
     answer.lower()
     try:
         if answer == question[1] or answer == question[2]:
             entry.configure(bg="lime", fg="black")
-            correct.append(1)
+            correct.append(1)  # adds an item to correct answers
         else:
             entry.configure(bg="red", fg="white")
     except IndexError:
         entry.configure(bg="red", fg="white")
-    entry.delete(0, END)
-    variable.set(1)
-    print(correct)
+    entry.delete(0, END)  # clears the entry box
+    variable.set(1)  # allows the loop to continue
 
 
 # MAIN ROUTINE
