@@ -332,8 +332,7 @@ def quiz(selection, q_displayed, enter, entry_box, back, frame):
 
 # function to check if answer is correct
 def check_answer(entry, question, correct, variable):
-    answer = entry.get()
-    answer.lower()
+    answer = entry.get().lower()
     try:
         if answer == question[1] or answer == question[2]:
             entry.configure(bg="lime", fg="black")
