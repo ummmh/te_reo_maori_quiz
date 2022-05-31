@@ -118,6 +118,6 @@ def export_to_txt(data):
 
 
 # main
-# quiz input for testing - later will be based on the button on main GUI
+# quiz input for testing
 quiz_selection = input("enter quiz selection: ").upper()
 quiz(quiz_selection)
