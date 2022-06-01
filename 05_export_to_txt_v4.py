@@ -71,13 +71,11 @@ def quiz(selection):
     # Score output
     score = f'Score: {correct_answers}/{total}'
     history.append(score)
-    print(history)
     export_to_txt(history)
 
 
 def export_to_txt(data):
     list = data
-    print(list)
     has_error = "yes"
     while has_error == "yes":
         has_error = "no"
@@ -108,7 +106,7 @@ def export_to_txt(data):
     filename = filename + ".txt"
 
     # create file to hold data
-    f = open(filename, "w+")
+    f = open(filename, "w+", encoding='utf-8')
 
     for item in list:
         f.write(item + "\n")
