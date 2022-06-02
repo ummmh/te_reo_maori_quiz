@@ -387,7 +387,7 @@ def check_answer(entry, question, correct, variable, data):
     answer = entry.get().lower()
     try:
         if answer == question[1] or answer == question[2]:
-            entry.configure(bg="lime", fg="black")
+            entry.configure(bg="lime")
             correct.append(1)  # adds an item to correct answers
         else:
             entry.configure(bg="red", fg="white")
