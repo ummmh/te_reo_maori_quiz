@@ -7,6 +7,7 @@ Created by Janna Lei Eugenio
 import tkinter as tk
 from tkinter import *
 import random  # to select a random word from the list
+import re  # need to import re in order to check if filename is valid
 
 
 # Main window
