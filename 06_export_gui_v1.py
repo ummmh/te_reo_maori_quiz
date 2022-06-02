@@ -251,11 +251,11 @@ class Days(tk.Frame):
                                       command=self.start_quiz)
         self.start_button.grid(row=0, column=1)
 
+        # Export button (column 2) - (hidden until the quiz is finished)
         self.export_button = tk.Button(self.buttons_frame, font="Helvetica 14",
-                                       bg="white", text="Export",
+                                       bg="#647687", fg="white", text="Export",
                                        command=lambda:
-                                       controller.show_page(Export))
-        self.export_button.grid_remove()
+                                       controller.show_page('Export'))
 
     def start_quiz(self):
         # changes the format of the window
@@ -264,6 +264,7 @@ class Days(tk.Frame):
         # gets rid of the start and back button
         self.back_bttn.grid_remove()
         self.start_button.grid_remove()
+        self.export_button.grid_remove()
         # adds an entry box
         self.answer_box = tk.Entry(self.buttons_frame)
         self.answer_box.grid()
@@ -282,56 +283,35 @@ class Export(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
 
+        background = "#647687"  # dark grey
+
         # Export frame
-        self.export_frame = tk.Frame(self, bg="white", padx=68, pady=25)
+        self.export_frame = tk.Frame(self, bg=background, padx=68, pady=25)
         self.export_frame.grid()
 
         # Export Heading (row 0)
+        self.export_heading = tk.Label(self.export_frame, bg=background,
+                                       fg="white", font= "Helvetica 16 bold",
+                                       text="Export")
+        self.export_heading.grid(row=0)
+
         # Export instructions (row 1)
+        self.export_instructions = tk.Label(self.export_frame, bg=background,
+                                            fg="white", font="Helvetica 10",
+                                            text="(intro)")
+        self.export_instructions.grid(row=1)
+
         # File name entry (row 2)
+        self.filename_entry = tk.Entry(self.export_frame, bg=background,
+                                       fg="white", font="Helvetica")
+        self.filename_entry.grid(row=2)
+
         # Buttons frame (row 3)
+        self.export_buttons_frame = tk.Frame(self.export_frame, bg=background)
+        self.export_frame.grid(row=3)
+        
         # Back button (column 0)
         # Export button (column 1)
-    # function to export results and score after quiz
-
-    def export_to_txt(self, data):
-        has_error = "yes"
-        while has_error == "yes":
-            has_error = "no"
-            filename = input("Enter a filename: ")
-
-            # regular expression to check name-can be upper or lower case letters,
-            valid_char = "[A-Za-z0-9_]"  # numbers or underscores
-            for letter in filename:
-                if re.match(valid_char, letter):
-                    continue
-                elif letter == " ":
-                    problem = "(no spaces allowed)"
-                else:
-                    problem = f"no {letter}'s allowed"
-                has_error = "yes"
-
-            if filename == "":
-                problem = "can't be blank"
-                has_error = "yes"
-
-            if has_error == "yes":  # describe problem
-                print(f"Invalid filename - {problem}")
-                print()
-            else:
-                print("You entered a valid filename")  # allow valid file name
-
-        # add .txt suffix
-        filename = filename + ".txt"
-
-        # create file to hold data
-        f = open(filename, "w+", encoding='utf-8')
-
-        for item in data:
-            f.write(item + "\n")
-
-        # close file
-        f.close()
 
 
 # quiz function
