@@ -9,6 +9,8 @@ from tkinter import *
 import random  # to select a random word from the list
 import re  # need to import re in order to check if filename is valid
 
+history = []  # history list to collect results to be exported to txt file
+
 
 # Main window
 class MainWindow(tk.Tk):
@@ -306,7 +308,7 @@ class Export(tk.Frame):
 
         # Export Heading (row 0)
         self.export_heading = tk.Label(self.export_frame, bg=background,
-                                       fg="white", font= "Helvetica 16 bold",
+                                       fg="white", font="Helvetica 16 bold",
                                        text="Export")
         self.export_heading.grid(row=0)
 
@@ -327,62 +329,63 @@ class Export(tk.Frame):
 
         # Back button (column 0)
         self.back_bttn = tk.Button(self.export_buttons_frame, bg="white",
-                                     font="Helvetica 14",
-                                     text="Back to Main Menu",
-                                     command=lambda:
-                                     controller.show_page('MainMenu'))
+                                   font="Helvetica 14",
+                                   text="Back to Main Menu",
+                                   command=lambda:
+                                   controller.show_page('MainMenu'))
         self.back_bttn.grid(row=0, column=0)
 
         # Export button (column 1)                       button colour is grey
         self.export_bttn = tk.Button(self.export_buttons_frame, bg="#BAC8D3",
                                      font="Helvetica 14", text="Export",
-                                     command=self.export_to_txt)
+                                     command=self.export_to_txt(history))
         self.export_bttn.grid(row=0, column=1)
 
     def export_to_txt(self, data):
-        has_error = "yes"
-        while has_error == "yes":
-            has_error = "no"
-            filename = self.filename_entry.get()
+        # reg expression to check name-can be upper or lower case letters,
+        valid_char = "[A-Za-z0-9_]"  # numbers or underscores
+        has_error = "no"
+        filename = self.filename_entry.get()
 
-            # reg expression to check name-can be upper or lower case letters,
-            valid_char = "[A-Za-z0-9_]"  # numbers or underscores
-            for letter in filename:
-                if re.match(valid_char, letter):
-                    continue
-                elif letter == " ":
-                    problem = "(no spaces allowed)"
-                else:
-                    problem = f"no {letter}'s allowed"
-                has_error = "yes"
-
-            if filename == "":
-                problem = "can't be blank"
-                has_error = "yes"
-
-            if has_error == "yes":  # describe problem
-                self.export_instructions.configure(
-                    text=f"Invalid filename - {problem}")
-                self.filename_entry.configure(bg="red")
+        for letter in filename:
+            if re.match(valid_char, letter):  # if the filename is valid
+                continue
+            elif letter == " ":
+                problem = "(no spaces allowed)"
             else:
-                # add .txt suffix
-                filename = filename + ".txt"
+                problem = f"no {letter}'s allowed"
+            has_error = "yes"
 
-                # create file to hold data
-                f = open(filename, "w+", encoding='utf-8')
+        if filename == "":
+            problem = "can't be blank"
+            has_error = "yes"
 
-                for item in data:
-                    f.write(item + "\n")
+        if has_error == "yes":  # describe problem
+            # displays the error
+            self.export_instructions.configure(
+                text=f"Invalid filename - {problem}")
+            # changes the entry colour
+            self.filename_entry.configure(bg="red")
+        else:
+            # add .txt suffix
+            filename = filename + ".txt"
+            # create file to hold data
+            f = open(filename, "w+", encoding='utf-8')
+            # writes the data to a text file
+            for item in data:
+                f.write(item + "\n")
+            # close file
+            f.close()
 
-                # close file
-                f.close()
-
-                self.controller.show_page('MainMenu')
+            # 'closes' the export page
+            self.controller.show_page('MainMenu')
 
 
 # quiz function
 def quiz(selection, q_displayed, enter, entry_box, back, start, export, frame):
+    global history
     rounds = tk.IntVar()  # variable to make loop wait for button press
+
     # separate lists relating to quiz selection
     colours = [["Mā", "white"], ["Whero", "red"], ["Kākāriki", "green"],
                ["Mangu", "black"], ["Pango", "black"], ["Kōwhai", "yellow"],
@@ -417,7 +420,7 @@ def quiz(selection, q_displayed, enter, entry_box, back, start, export, frame):
     correct_answers = []
 
     # collects the quiz answers and score, later to be converted to a .txt file
-    history = ['Word in Māori - Word in english : Your answer']
+    history.append('Word in Māori - Word in english : Your answer')
 
     # ask user questions
     while questions:
@@ -445,7 +448,7 @@ def quiz(selection, q_displayed, enter, entry_box, back, start, export, frame):
     start.grid()
     start.configure(text="Replay Quiz")
     export.grid(row=0, column=2)  # reveals the export button
-    frame.configure(padx=68, pady=25) # makes frame go back to normal size
+    frame.configure(padx=68, pady=25)  # makes frame go back to normal size
 
 
 # function to check if answer is correct
