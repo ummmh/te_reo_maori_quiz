@@ -320,23 +320,25 @@ class Export(tk.Frame):
         self.filename_entry.grid(row=2)
 
         # Buttons frame (row 3)
-        self.export_buttons_frame = tk.Frame(self.export_frame, bg=background)
-        self.export_frame.grid(row=3)
+        self.export_buttons_frame = tk.Frame(self.export_frame, bg=background,
+                                             pady=10)
+        self.export_buttons_frame.grid(row=3)
 
         # Back button (column 0)
         self.back_bttn = tk.Button(self.export_buttons_frame, bg="white",
                                      font="Helvetica 14",
                                      text="Back to Main Menu",
                                      command=lambda:
-                                     controller.show_page('Main Menu'))
+                                     controller.show_page('MainMenu'))
         self.back_bttn.grid(row=0, column=0)
 
         # Export button (column 1)                       button colour is grey
         self.export_bttn = tk.Button(self.export_buttons_frame, bg="#BAC8D3",
                                      font="Helvetica 14", text="Export",
-                                     command=self.export)
+                                     command=self.export_to_txt)
+        self.export_bttn.grid(row=0, column=1)
 
-    def export(self, data):
+    def export_to_txt(self):
         pass
 
 
