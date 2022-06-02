@@ -1,5 +1,5 @@
 """Component 5 of Te Reo Māori Quiz
-Adds Export GUI
+Adds Export GUI to 04_quiz_gui_v11
 Created by Janna Lei Eugenio
 1/06/2022
 """
