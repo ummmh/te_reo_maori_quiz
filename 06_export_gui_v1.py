@@ -132,6 +132,12 @@ class Colours(tk.Frame):
                                       command=self.start_quiz)
         self.start_button.grid(row=0, column=1)
 
+        # Export button (column 2) - (hidden until the quiz is finished)
+        self.export_button = tk.Button(self.buttons_frame, font="Helvetica 14",
+                                       bg="#647687", fg="white", text="Export",
+                                       command=lambda:
+                                       controller.show_page('Export'))
+
     def start_quiz(self):
         # changes the format of the window
         self.colours_frame.configure(padx=143, pady=32)
@@ -139,6 +145,7 @@ class Colours(tk.Frame):
         # gets rid of the start and back button
         self.back_bttn.grid_remove()
         self.start_button.grid_remove()
+        self.export_button.grid_remove()
 
         # adds an entry box
         self.answer_box = tk.Entry(self.buttons_frame)
@@ -149,7 +156,8 @@ class Colours(tk.Frame):
         self.answer_button.grid(row=1)
 
         quiz("C", self.colours_text, self.answer_button, self.answer_box,
-             self.back_bttn, self.start_button, self.colours_frame)
+             self.back_bttn, self.start_button, self.export_button,
+             self.colours_frame)
 
 
 class Numbers(tk.Frame):
@@ -191,6 +199,12 @@ class Numbers(tk.Frame):
                                       command=self.start_quiz)
         self.start_button.grid(row=0, column=1)
 
+        # Export button (column 2) - (hidden until the quiz is finished)
+        self.export_button = tk.Button(self.buttons_frame, font="Helvetica 14",
+                                       bg="#647687", fg="white", text="Export",
+                                       command=lambda:
+                                       controller.show_page('Export'))
+
     def start_quiz(self):
         # changes the format of the window
         self.numbers_frame.configure(padx=131, pady=32)
@@ -198,6 +212,7 @@ class Numbers(tk.Frame):
         # gets rid of the start and back button
         self.back_bttn.grid_remove()
         self.start_button.grid_remove()
+        self.export_button.grid_remove()
 
         # adds an entry box
         self.answer_box = tk.Entry(self.buttons_frame)
@@ -208,7 +223,8 @@ class Numbers(tk.Frame):
         self.answer_button.grid(row=1)
 
         quiz("N", self.numbers_text, self.answer_button, self.answer_box,
-             self.back_bttn, self.start_button, self.numbers_frame)
+             self.back_bttn, self.start_button, self.export_button,
+             self.numbers_frame)
 
 
 class Days(tk.Frame):
