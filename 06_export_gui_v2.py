@@ -338,8 +338,44 @@ class Export(tk.Frame):
                                      command=self.export_to_txt)
         self.export_bttn.grid(row=0, column=1)
 
-    def export_to_txt(self):
-        pass
+    def export_to_txt(self, data):
+        has_error = "yes"
+        while has_error == "yes":
+            has_error = "no"
+            filename = input("Enter a filename: ")
+
+            # regular expression to check name-can be upper or lower case letters,
+            valid_char = "[A-Za-z0-9_]"  # numbers or underscores
+            for letter in filename:
+                if re.match(valid_char, letter):
+                    continue
+                elif letter == " ":
+                    problem = "(no spaces allowed)"
+                else:
+                    problem = f"no {letter}'s allowed"
+                has_error = "yes"
+
+            if filename == "":
+                problem = "can't be blank"
+                has_error = "yes"
+
+            if has_error == "yes":  # describe problem
+                print(f"Invalid filename - {problem}")
+                print()
+            else:
+                print("You entered a valid filename")  # allow valid file name
+
+        # add .txt suffix
+        filename = filename + ".txt"
+
+        # create file to hold data
+        f = open(filename, "w+", encoding='utf-8')
+
+        for item in data:
+            f.write(item + "\n")
+
+        # close file
+        f.close()
 
 
 # quiz function
