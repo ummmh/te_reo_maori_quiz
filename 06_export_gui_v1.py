@@ -24,7 +24,7 @@ class MainWindow(tk.Tk):
         self.pages = {}
 
         # adds all the classes to pages so can be shown
-        for p in (MainMenu, Colours, Numbers, Days):
+        for p in (MainMenu, Colours, Numbers, Days, Export):
             page_name = p.__name__
             frame = p(parent=container, controller=self)
             frame.grid(row=0, column=0, sticky="nsew")
@@ -268,6 +268,23 @@ class Days(tk.Frame):
 
         quiz("D", self.days_text, self.answer_button, self.answer_box,
              self.back_bttn, self.start_button, self.days_frame)
+
+
+class Export(tk.Frame):
+    def __init__(self, parent, controller, data):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+
+        # Export frame
+        self.export_frame = tk.Frame(self, bg="white", padx=68, pady=25)
+        self.export_frame.grid()
+
+        # Export Heading (row 0)
+        # Export instructions (row 1)
+        # File name entry (row 2)
+        # Buttons frame (row 3)
+        # Back button (column 0)
+        # Export button (column 1)
 
 
 # quiz function
