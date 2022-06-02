@@ -1,6 +1,5 @@
 """Component 5 of Te Reo Māori Quiz
-Export GUI after finishing a quiz - Incorporates 05_export_gui_v4
-into 04_quiz_gui_v11
+Adds Export GUI
 Created by Janna Lei Eugenio
 1/06/2022
 """
@@ -320,7 +319,7 @@ class Export(tk.Frame):
         self.export_bttn = tk.Button(self.export_buttons_frame, bg="#BAC8D3",
                                      font="Helvetica 14", text="Export",
                                      command=self.export)
-        
+
     def export(self, data):
         pass
 
