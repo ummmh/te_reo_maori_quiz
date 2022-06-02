@@ -338,7 +338,8 @@ class Export(tk.Frame):
         # Export button (column 1)                       button colour is grey
         self.export_bttn = tk.Button(self.export_buttons_frame, bg="#BAC8D3",
                                      font="Helvetica 14", text="Export",
-                                     command=self.export_to_txt(history))
+                                     command=lambda:
+                                     self.export_to_txt(history))
         self.export_bttn.grid(row=0, column=1)
 
     def export_to_txt(self, data):
@@ -449,6 +450,7 @@ def quiz(selection, q_displayed, enter, entry_box, back, start, export, frame):
     start.configure(text="Replay Quiz")
     export.grid(row=0, column=2)  # reveals the export button
     frame.configure(padx=68, pady=25)  # makes frame go back to normal size
+    print(history)
 
 
 # function to check if answer is correct
