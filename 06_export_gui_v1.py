@@ -251,6 +251,12 @@ class Days(tk.Frame):
                                       command=self.start_quiz)
         self.start_button.grid(row=0, column=1)
 
+        self.export_button = tk.Button(self.buttons_frame, font="Helvetica 14",
+                                       bg="white", text="Export",
+                                       command=lambda:
+                                       controller.show_page(Export))
+        self.export_button.grid_remove()
+
     def start_quiz(self):
         # changes the format of the window
         self.days_frame.configure(padx=114, pady=32)
@@ -267,11 +273,12 @@ class Days(tk.Frame):
         self.answer_button.grid(row=1)
 
         quiz("D", self.days_text, self.answer_button, self.answer_box,
-             self.back_bttn, self.start_button, self.days_frame)
+             self.back_bttn, self.start_button, self.export_button,
+             self.days_frame)
 
 
 class Export(tk.Frame):
-    def __init__(self, parent, controller, data):
+    def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
 
@@ -285,10 +292,50 @@ class Export(tk.Frame):
         # Buttons frame (row 3)
         # Back button (column 0)
         # Export button (column 1)
+    # function to export results and score after quiz
+
+    def export_to_txt(self, data):
+        has_error = "yes"
+        while has_error == "yes":
+            has_error = "no"
+            filename = input("Enter a filename: ")
+
+            # regular expression to check name-can be upper or lower case letters,
+            valid_char = "[A-Za-z0-9_]"  # numbers or underscores
+            for letter in filename:
+                if re.match(valid_char, letter):
+                    continue
+                elif letter == " ":
+                    problem = "(no spaces allowed)"
+                else:
+                    problem = f"no {letter}'s allowed"
+                has_error = "yes"
+
+            if filename == "":
+                problem = "can't be blank"
+                has_error = "yes"
+
+            if has_error == "yes":  # describe problem
+                print(f"Invalid filename - {problem}")
+                print()
+            else:
+                print("You entered a valid filename")  # allow valid file name
+
+        # add .txt suffix
+        filename = filename + ".txt"
+
+        # create file to hold data
+        f = open(filename, "w+", encoding='utf-8')
+
+        for item in data:
+            f.write(item + "\n")
+
+        # close file
+        f.close()
 
 
 # quiz function
-def quiz(selection, q_displayed, enter, entry_box, back, start, frame):
+def quiz(selection, q_displayed, enter, entry_box, back, start, export, frame):
     rounds = tk.IntVar()  # variable to make loop wait for button press
     # separate lists relating to quiz selection
     colours = [["Mā", "white"], ["Whero", "red"], ["Kākāriki", "green"],
@@ -351,6 +398,7 @@ def quiz(selection, q_displayed, enter, entry_box, back, start, frame):
     back.grid()
     start.grid()
     start.configure(text="Replay Quiz")
+    export.grid(row=0, column=2)  # reveals the export button
     frame.configure(padx=68, pady=25) # makes frame go back to normal size
 
 
@@ -368,47 +416,6 @@ def check_answer(entry, question, correct, variable, data):
     data.append(f'{question[0]} - {question[1]} : {answer}')  # adds result to
     entry.delete(0, END)  # clears the entry box                history
     variable.set(1)  # allows the loop to continue
-
-
-# function to export results and score after quiz
-def export_to_txt(data):
-    has_error = "yes"
-    while has_error == "yes":
-        has_error = "no"
-        filename = input("Enter a filename: ")
-
-        # regular expression to check name-can be upper or lower case letters,
-        valid_char = "[A-Za-z0-9_]"  # numbers or underscores
-        for letter in filename:
-            if re.match(valid_char, letter):
-                continue
-            elif letter == " ":
-                problem = "(no spaces allowed)"
-            else:
-                problem = f"no {letter}'s allowed"
-            has_error = "yes"
-
-        if filename == "":
-            problem = "can't be blank"
-            has_error = "yes"
-
-        if has_error == "yes":  # describe problem
-            print(f"Invalid filename - {problem}")
-            print()
-        else:
-            print("You entered a valid filename")  # allow valid file name
-
-    # add .txt suffix
-    filename = filename + ".txt"
-
-    # create file to hold data
-    f = open(filename, "w+", encoding='utf-8')
-
-    for item in data:
-        f.write(item + "\n")
-
-    # close file
-    f.close()
 
 
 # MAIN ROUTINE
