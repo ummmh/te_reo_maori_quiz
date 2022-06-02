@@ -342,9 +342,9 @@ class Export(tk.Frame):
         has_error = "yes"
         while has_error == "yes":
             has_error = "no"
-            filename = input("Enter a filename: ")
+            filename = self.filename_entry.get()
 
-            # regular expression to check name-can be upper or lower case letters,
+            # reg expression to check name-can be upper or lower case letters,
             valid_char = "[A-Za-z0-9_]"  # numbers or underscores
             for letter in filename:
                 if re.match(valid_char, letter):
@@ -360,22 +360,23 @@ class Export(tk.Frame):
                 has_error = "yes"
 
             if has_error == "yes":  # describe problem
-                print(f"Invalid filename - {problem}")
-                print()
+                self.export_instructions.configure(
+                    text=f"Invalid filename - {problem}")
+                self.filename_entry.configure(bg="red")
             else:
-                print("You entered a valid filename")  # allow valid file name
+                # add .txt suffix
+                filename = filename + ".txt"
 
-        # add .txt suffix
-        filename = filename + ".txt"
+                # create file to hold data
+                f = open(filename, "w+", encoding='utf-8')
 
-        # create file to hold data
-        f = open(filename, "w+", encoding='utf-8')
+                for item in data:
+                    f.write(item + "\n")
 
-        for item in data:
-            f.write(item + "\n")
+                # close file
+                f.close()
 
-        # close file
-        f.close()
+                self.controller.show_page('MainMenu')
 
 
 # quiz function
