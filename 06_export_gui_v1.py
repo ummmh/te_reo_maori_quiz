@@ -309,7 +309,7 @@ class Export(tk.Frame):
         # Buttons frame (row 3)
         self.export_buttons_frame = tk.Frame(self.export_frame, bg=background)
         self.export_frame.grid(row=3)
-        
+
         # Back button (column 0)
         # Export button (column 1)
 
