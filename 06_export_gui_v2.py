@@ -347,6 +347,7 @@ class Export(tk.Frame):
         valid_char = "[A-Za-z0-9_]"  # numbers or underscores
         has_error = "no"
         filename = self.filename_entry.get()
+        print(filename)  # for testing purposes
 
         for letter in filename:
             if re.match(valid_char, letter):  # if the filename is valid
@@ -450,7 +451,7 @@ def quiz(selection, q_displayed, enter, entry_box, back, start, export, frame):
     start.configure(text="Replay Quiz")
     export.grid(row=0, column=2)  # reveals the export button
     frame.configure(padx=68, pady=25)  # makes frame go back to normal size
-    print(history)
+    print(history)  # for testing purposes
 
 
 # function to check if answer is correct
