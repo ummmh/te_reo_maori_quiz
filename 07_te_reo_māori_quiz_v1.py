@@ -80,7 +80,7 @@ class MainMenu(tk.Frame):
 
         # Numbers quiz button (row 2, column 1)
         self.numbers_button = tk.Button(self.quiz_select_buttons_frame,
-                                        text="Numbers",      # off white
+                                        text="Numbers",  # off white
                                         font="Helvetica 14", bg="#F5F5F5",
                                         command=lambda:
                                         controller.show_page("Numbers"))
@@ -104,7 +104,7 @@ class Colours(tk.Frame):
         background = "#F8CECC"  # background = light red
 
         # Quiz frame
-        self.colours_frame = tk.Frame(self, bg=background, padx=68, pady=25)
+        self.colours_frame = tk.Frame(self, bg=background, padx=48, pady=30)
         self.colours_frame.grid()
 
         # Quiz heading (row 0)
@@ -145,8 +145,8 @@ class Colours(tk.Frame):
 
         # Export button (column 2) - (hidden until the quiz is finished)
         self.export_button = tk.Button(self.buttons_frame, font="Helvetica 14",
-                                       bg="#647687", fg="white", text="Export",
-                                       command=lambda:
+                                       bg="#647687", fg="white",
+                                       text="Export Score", command=lambda:
                                        controller.show_page('Export'))
 
     def start_quiz(self):
@@ -179,7 +179,7 @@ class Numbers(tk.Frame):
         background = "#F5F5F5"  # background = off white
 
         # Quiz frame
-        self.numbers_frame = tk.Frame(self, bg=background, padx=68, pady=25)
+        self.numbers_frame = tk.Frame(self, bg=background, padx=11, pady=30)
         self.numbers_frame.grid()
 
         # Quiz heading (row 0)
@@ -190,7 +190,16 @@ class Numbers(tk.Frame):
 
         # Quiz instructions (row 1)
         self.numbers_text = tk.Label(self.numbers_frame, font="Helvetica 10",
-                                     bg=background, text="This is the numbers quiz\nWhen you start the quiz, a random number from 1-10 will be displayed in Māori\nType the number or english translation in the textbox and hit enter")
+                                     bg=background, text="This is the numbers"
+                                                         " quiz\nWhen you "
+                                                         "start the quiz, a"
+                                                         " random number from"
+                                                         " 1-10 will be"
+                                                         " displayed in Māori"
+                                                         "\nType the number or"
+                                                         " english translation"
+                                                         " in the textbox and"
+                                                         " hit enter")
         self.numbers_text.grid(row=1, column=1)
 
         # Button frame (row 2)
@@ -212,8 +221,8 @@ class Numbers(tk.Frame):
 
         # Export button (column 2) - (hidden until the quiz is finished)
         self.export_button = tk.Button(self.buttons_frame, font="Helvetica 14",
-                                       bg="#647687", fg="white", text="Export",
-                                       command=lambda:
+                                       bg="#647687", fg="white",
+                                       text="Export Score", command=lambda:
                                        controller.show_page('Export'))
 
     def start_quiz(self):
@@ -246,7 +255,7 @@ class Days(tk.Frame):
         background = "#BAC8D3"  # background = light grey
 
         # Quiz frame
-        self.days_frame = tk.Frame(self, bg=background, padx=68, pady=25)
+        self.days_frame = tk.Frame(self, bg=background, padx=52, pady=30)
         self.days_frame.grid()
 
         # Quiz heading (row 0)
@@ -256,7 +265,14 @@ class Days(tk.Frame):
 
         # Quiz instructions (row 1)
         self.days_text = tk.Label(self.days_frame, font="Helvetica 10",
-                                  bg=background, text="(intro)")
+                                  bg=background, text="This is the days of the"
+                                                      " week quiz\nWhen you"
+                                                      " start the quiz, a"
+                                                      " random day will be"
+                                                      " displayed in Māori"
+                                                      "\nType the english "
+                                                      "translation in the "
+                                                      "textbox and hit enter")
         self.days_text.grid(row=1, column=1)
 
         # Button frame (row 2)
@@ -278,8 +294,8 @@ class Days(tk.Frame):
 
         # Export button (column 2) - (hidden until the quiz is finished)
         self.export_button = tk.Button(self.buttons_frame, font="Helvetica 14",
-                                       bg="#647687", fg="white", text="Export",
-                                       command=lambda:
+                                       bg="#647687", fg="white",
+                                       text="Export Score", command=lambda:
                                        controller.show_page('Export'))
 
     def start_quiz(self):
