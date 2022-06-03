@@ -48,7 +48,7 @@ class MainMenu(tk.Frame):
 
         # Main menu Screen GUI
         self.main_frame = tk.Frame(self, bg=background_colour,
-                                   padx=10, pady=10)
+                                   padx=70, pady=24)
         self.main_frame.grid(row=0, column=0, sticky="nsew")
 
         # Te Reo Māori Quiz Heading (row 0)
