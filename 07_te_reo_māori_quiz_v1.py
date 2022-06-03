@@ -1,5 +1,5 @@
-"""Assembled Te Reo Māori Quiz - version 1 (based off of 06_export_gui_v2)
-Has not been tested yet
+"""Assembled Te Reo Māori Quiz
+version 1 (based off of 06_export_gui_v2) - has not been tested yet
 Created by Janna Lei Eugenio
 3/06/2022
 """
