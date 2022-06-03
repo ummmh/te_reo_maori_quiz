@@ -1,4 +1,5 @@
 """Assembled Te Reo Māori Quiz - version 1 (based off of 06_export_gui_v2)
+Has not been tested yet
 Created by Janna Lei Eugenio
 3/06/2022
 """
@@ -151,7 +152,7 @@ class Colours(tk.Frame):
 
     def start_quiz(self):
         # changes the format of the window
-        self.colours_frame.configure(padx=143, pady=32)
+        self.colours_frame.configure(padx=180, pady=34)
         self.colours_text.configure(font="Helvetica 14", text="question")
         # gets rid of the start and back button
         self.back_bttn.grid_remove()
@@ -179,7 +180,7 @@ class Numbers(tk.Frame):
         background = "#F5F5F5"  # background = off white
 
         # Quiz frame
-        self.numbers_frame = tk.Frame(self, bg=background, padx=11, pady=30)
+        self.numbers_frame = tk.Frame(self, bg=background, padx=12, pady=30)
         self.numbers_frame.grid()
 
         # Quiz heading (row 0)
@@ -227,7 +228,7 @@ class Numbers(tk.Frame):
 
     def start_quiz(self):
         # changes the format of the window
-        self.numbers_frame.configure(padx=131, pady=32)
+        self.numbers_frame.configure(padx=181, pady=34)
         self.numbers_text.configure(font="Helvetica 14", text="question")
         # gets rid of the start and back button
         self.back_bttn.grid_remove()
@@ -300,7 +301,7 @@ class Days(tk.Frame):
 
     def start_quiz(self):
         # changes the format of the window
-        self.days_frame.configure(padx=114, pady=32)
+        self.days_frame.configure(padx=151, pady=34)
         self.days_text.configure(font="Helvetica 14", text="question")
         # gets rid of the start and back button
         self.back_bttn.grid_remove()
@@ -327,7 +328,7 @@ class Export(tk.Frame):
         background = "#647687"  # dark grey
 
         # Export frame
-        self.export_frame = tk.Frame(self, bg=background, padx=68, pady=25)
+        self.export_frame = tk.Frame(self, bg=background, padx=99, pady=10)
         self.export_frame.grid()
 
         # Export Heading (row 0)
@@ -339,7 +340,12 @@ class Export(tk.Frame):
         # Export instructions (row 1)
         self.export_instructions = tk.Label(self.export_frame, bg=background,
                                             fg="white", font="Helvetica 10",
-                                            text="(intro)")
+                                            text="Please enter a file name - "
+                                                 "your answers and quiz\n"
+                                                 "results will be exported to "
+                                                 "a text file and will\nappear"
+                                                 " in the same folder as this"
+                                                 " program")
         self.export_instructions.grid(row=1)
 
         # File name entry (row 2)
@@ -474,7 +480,7 @@ def quiz(selection, q_displayed, enter, entry_box, back, start, export, frame):
     start.grid()
     start.configure(text="Replay Quiz")
     export.grid(row=0, column=2)  # reveals the export button
-    frame.configure(padx=68, pady=25)  # makes frame go back to normal size
+    frame.configure(padx=32, pady=43)  # makes frame go back to normal size
 
 
 # function to check if answer is correct
