@@ -388,7 +388,6 @@ class Export(tk.Frame):
         valid_char = "[A-Za-z0-9_]"  # numbers or underscores
         has_error = "no"
         filename = self.filename_entry.get()
-        print(filename)  # for testing purposes
 
         for letter in filename:
             if re.match(valid_char, letter):  # if the filename is valid
