@@ -1,6 +1,8 @@
 """Assembled Te Reo Māori Quiz
 version 2 - edited so that the history will clear when a quiz is played again
 So that it doesn't save previous results and scores on the same txt file
+- fixed formatting when an error message shows up
+- Export GUI resets again after a file was saved
 Created by Janna Lei Eugenio
 3/06/2022
 """
@@ -326,10 +328,17 @@ class Export(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
 
+        # setting up variables
         background = "#647687"  # dark grey
+        instructions = "You can export your answers and score of your quiz" \
+                       " to a text file here.\nEnter a file name below and" \
+                       " press 'Export'.\nThe file will be saved in the " \
+                       "folder that this program is saved in."
+        warning = "Note: if the filename already exists, it will" \
+                  " be replaced with this file"
 
         # Export frame
-        self.export_frame = tk.Frame(self, bg=background, padx=99, pady=10)
+        self.export_frame = tk.Frame(self, bg=background, padx=37, pady=0)
         self.export_frame.grid()
 
         # Export Heading (row 0)
@@ -341,22 +350,23 @@ class Export(tk.Frame):
         # Export instructions (row 1)
         self.export_instructions = tk.Label(self.export_frame, bg=background,
                                             fg="white", font="Helvetica 10",
-                                            text="Please enter a file name - "
-                                                 "your answers and quiz\n"
-                                                 "results will be exported to "
-                                                 "a text file and will\nappear"
-                                                 " in the same folder as this"
-                                                 " program")
+                                            text=instructions)
         self.export_instructions.grid(row=1)
 
-        # File name entry (row 2)
-        self.filename_entry = tk.Entry(self.export_frame)
-        self.filename_entry.grid(row=2)
+        # Error Message/Warning (row 2) - text is light pink
+        self.error_msg = tk.Label(self.export_frame, bg=background,
+                                  fg="#F8CECC", font="Helvetica 10",
+                                  text=warning)
+        self.error_msg.grid(row=2)
 
-        # Buttons frame (row 3)
+        # File name entry (row 3)
+        self.filename_entry = tk.Entry(self.export_frame)
+        self.filename_entry.grid(row=3)
+
+        # Buttons frame (row 4)
         self.export_buttons_frame = tk.Frame(self.export_frame, bg=background,
                                              pady=10)
-        self.export_buttons_frame.grid(row=3)
+        self.export_buttons_frame.grid(row=4)
 
         # Back button (column 0)
         self.back_bttn = tk.Button(self.export_buttons_frame, bg="white",
@@ -370,10 +380,10 @@ class Export(tk.Frame):
         self.export_bttn = tk.Button(self.export_buttons_frame, bg="#BAC8D3",
                                      font="Helvetica 14", text="Export",
                                      command=lambda:
-                                     self.export_to_txt(history))
+                                     self.export_to_txt(history, warning))
         self.export_bttn.grid(row=0, column=1)
 
-    def export_to_txt(self, data):
+    def export_to_txt(self, data, warning):
         # reg expression to check name-can be upper or lower case letters,
         valid_char = "[A-Za-z0-9_]"  # numbers or underscores
         has_error = "no"
@@ -395,8 +405,7 @@ class Export(tk.Frame):
 
         if has_error == "yes":  # describe problem
             # displays the error
-            self.export_instructions.configure(
-                text=f"Invalid filename - {problem}")
+            self.error_msg.configure(text=f"Invalid filename - {problem}")
             # changes the entry colour
             self.filename_entry.configure(bg="red")
         else:
@@ -410,6 +419,10 @@ class Export(tk.Frame):
             # close file
             f.close()
 
+            # resets the export GUI
+            self.error_msg.configure(text=warning)  # resets error msg
+            self.filename_entry.delete(0, END)  # clears entry boc
+            self.filename_entry.configure(bg="white")  # resets it to white
             # 'closes' the export page
             self.controller.show_page('MainMenu')
 
