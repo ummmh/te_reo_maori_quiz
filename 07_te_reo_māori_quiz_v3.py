@@ -498,13 +498,15 @@ def quiz(selection, q_displayed, enter, entry_box, back, start, export, frame):
 def check_answer(entry, question, correct, variable, data):
     answer = entry.get().lower()
     try:
+        # answer is correct
         if answer == question[1] or answer == question[2]:
             entry.configure(bg="#D9FFB8")  # changes bar to light green
             correct.append(1)  # adds an item to correct answers
+        # answer is incorrect
         else:
             entry.configure(bg="#FFA6A6")  # changes bar colour to light red
     except IndexError:
-        entry.configure(bg="red", fg="white")
+        entry.configure(bg="#FFA6A6")
     data.append(f'{question[0]} - {question[1]} : {answer}')  # adds result to
     entry.delete(0, END)  # clears the entry box                history
     variable.set(1)  # allows the loop to continue
