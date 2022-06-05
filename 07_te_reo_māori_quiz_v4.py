@@ -484,7 +484,6 @@ def quiz(selection, start_x_val, frame, q_displayed, back, start, enter,
     export.grid(row=0, column=2)
     # returns frame to normal size
     frame.configure(padx=32, pady=43)
-    print(history)
 
 
 # function to check if answer is correct
