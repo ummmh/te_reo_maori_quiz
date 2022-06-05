@@ -331,8 +331,7 @@ class Export(tk.Frame):
                        " to a text file here.\nEnter a file name below and" \
                        " press 'Export'.\nThe file will be saved in the " \
                        "folder that this program is saved in."
-        warning = "Note: if the filename already exists, it will" \
-                  " be replaced with this file"
+        warning = "Note: this exports the score of the quiz you last played"
 
         # Export frame
         self.export_frame = tk.Frame(self, bg=background, padx=37, pady=0)
