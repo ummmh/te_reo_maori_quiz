@@ -293,8 +293,6 @@ class Days(tk.Frame):
              self.start_button, self.answer_button, self.answer_box,
              self.export_button)
 
-        # (selection, start_x_val, frame, q_displayed, back, start, enter, entry_box, export)
-
 
 class Export(tk.Frame):
     def __init__(self, parent, controller):
