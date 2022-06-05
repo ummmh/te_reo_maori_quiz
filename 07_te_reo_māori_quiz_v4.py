@@ -475,6 +475,7 @@ def quiz(selection, start_x_val, frame, q_displayed, back, start, enter,
     # gets rid of entry button and enter box and resets colour
     enter.grid_remove()
     entry_box.configure(bg="white")
+    entry_box.delete(0, END)
     entry_box.grid_remove()
     # adds back the back to main menu button and start button for replay
     back.grid()
